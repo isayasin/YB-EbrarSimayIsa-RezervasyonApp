@@ -15,5 +15,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.Entities.Models
         public decimal? TotalPrice { get; set; }
         public ICollection<Payment>? Payments { get; set; }
         public virtual ICollection<Guest>? Guests { get; set; }
+        public Room? Room { get; set; }
+        public Guid? RoomID { get; set; }
     }
 }
