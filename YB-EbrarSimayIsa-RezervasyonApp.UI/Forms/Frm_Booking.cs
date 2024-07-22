@@ -31,5 +31,10 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
         {
 
         }
+
+        private void Frm_Booking_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
