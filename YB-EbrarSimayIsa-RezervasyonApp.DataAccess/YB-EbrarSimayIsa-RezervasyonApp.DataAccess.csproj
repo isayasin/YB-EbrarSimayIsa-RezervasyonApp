@@ -20,9 +20,4 @@
     <ProjectReference Include="..\YB-EbrarSimayIsa-RezervasyonApp.Entities\YB-EbrarSimayIsa-RezervasyonApp.Entities.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Abstractions\" />
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
 </Project>
