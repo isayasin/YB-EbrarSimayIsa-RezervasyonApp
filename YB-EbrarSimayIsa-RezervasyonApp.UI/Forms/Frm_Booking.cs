@@ -13,7 +13,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
 {
     public partial class Frm_Booking : Form
     {
-        //private FlowLayoutPanel flpBookingGuests;
+        private FlowLayoutPanel flpBookingGuests;
         public Frm_Booking()
         {
             InitializeComponent();
@@ -38,15 +38,15 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
         {
             List<Guest> guests = new List<Guest>();
 
-            for (int i = 0; i < flowLayoutPanel1.Controls.Count; i += 2)
+            for (int i = 0; i < flpBookingGuests.Controls.Count; i += 2)
             {
-                string guestName = flowLayoutPanel1.Controls[i].Text.Split(':')[1].Trim();
-                string guestSurname = flowLayoutPanel1.Controls[i + 1].Text.Split(':')[1].Trim();
+                string guestName = flpBookingGuests.Controls[i].Text.Split(':')[1].Trim();
+                string guestSurname = flpBookingGuests.Controls[i + 1].Text.Split(':')[1].Trim();
 
                 guests.Add(new Guest
                 {
                     FirstName = guestName,
-                    LastName = guestSurname,
+                    LastName = guestName,
                     
                 });
             }
@@ -64,7 +64,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
 
         private void button6_Click(object sender, EventArgs e)
         {
-            flowLayoutPanel1.Controls.Clear();
+            flpBookingGuests.Controls.Clear();
 
             int guestCount = (int)numericUpDown1.Value;
 
@@ -78,12 +78,12 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
                         Label lblName = new Label();
                         lblName.Text = $"Misafir {i + 1} Adı: {guestForm.GuestName}";
                         lblName.AutoSize = true;
-                        flowLayoutPanel1.Controls.Add(lblName);
+                        flpBookingGuests.Controls.Add(lblName);
 
                         Label lblSurname = new Label();
                         lblSurname.Text = $"Misafir {i + 1} Soyadı: {guestForm.GuestSurname}";
                         lblSurname.AutoSize = true;
-                        flowLayoutPanel1.Controls.Add(lblSurname);
+                        flpBookingGuests.Controls.Add(lblSurname);
                     }
                 }
             }

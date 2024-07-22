@@ -121,22 +121,24 @@
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(100, 23);
             textBox5.TabIndex = 1;
-            // 
+            label10.TabIndex = 0;
             // textBox4
-            // 
+            label10.TabIndex = 0;
             textBox4.Location = new Point(200, 122);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(100, 23);
             textBox4.TabIndex = 1;
-            // 
+            textBox1.Size = new Size(100, 23);
             // button2
-            // 
+            textBox1.Size = new Size(100, 23);
             button2.Location = new Point(225, 221);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 6;
             button2.Text = "Misafir Ekle";
             button2.UseVisualStyleBackColor = true;
+            label11.TabIndex = 0;
+            // textBox3
             // 
             // textBox3
             // 
@@ -144,6 +146,10 @@
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(100, 23);
             textBox3.TabIndex = 1;
+            txtMisafirSoyad.Location = new Point(200, 58);
+            txtMisafirSoyad.Name = "txtMisafirSoyad";
+            txtMisafirSoyad.Size = new Size(100, 23);
+            txtMisafirSoyad.TabIndex = 1;
             // 
             // label14
             // 
@@ -160,160 +166,152 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(100, 23);
             textBox2.TabIndex = 1;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
             label13.Location = new Point(15, 122);
-            label13.Name = "label13";
+            // 
             label13.Size = new Size(36, 15);
-            label13.TabIndex = 0;
-            label13.Text = "Email";
-            // 
+            label13.Location = new Point(21, 203);
             // textBox1
-            // 
+            label13.Name = "label13";
             textBox1.Location = new Point(200, 26);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(100, 23);
             textBox1.TabIndex = 1;
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Location = new Point(15, 93);
+            textBox4.Size = new Size(100, 23);
+            textBox4.TabIndex = 1;
+            textBox4.Size = new Size(100, 23);
+            // label14
+            textBox4.Size = new Size(100, 23);
+            label14.AutoSize = true;
+            label14.Location = new Point(15, 151);
+            label14.Name = "label14";
+            label14.Size = new Size(67, 15);
+            label14.TabIndex = 0;
+            label14.Text = "Telefon No:";
             label12.Name = "label12";
-            label12.Size = new Size(42, 15);
+            // textBox5
             label12.TabIndex = 0;
-            label12.Text = "Adress";
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(15, 58);
+            textBox5.Location = new Point(200, 151);
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(100, 23);
+            textBox5.TabIndex = 1;
             label11.Name = "label11";
-            label11.Size = new Size(42, 15);
+            // button2
             label11.TabIndex = 0;
-            label11.Text = "Soyad:";
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Location = new Point(15, 26);
+            button2.Location = new Point(225, 221);
+            button2.Name = "button2";
+            button2.Size = new Size(75, 23);
+            button2.TabIndex = 6;
+            button2.Text = "Misafir Ekle";
+            button2.UseVisualStyleBackColor = true;
             label10.Name = "label10";
-            label10.Size = new Size(25, 15);
-            label10.TabIndex = 0;
-            label10.Text = "Ad:";
-            // 
             // comboBox1
-            // 
+            label10.TabIndex = 0;
             comboBox1.FormattingEnabled = true;
             comboBox1.Location = new Point(120, 26);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(121, 23);
             comboBox1.TabIndex = 0;
-            // 
+            cmbOtel.Location = new Point(120, 26);
             // comboBox2
-            // 
+            cmbOtel.Size = new Size(121, 23);
             comboBox2.FormattingEnabled = true;
             comboBox2.Location = new Point(120, 55);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(121, 23);
             comboBox2.TabIndex = 0;
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
+            cmbOdaTipi.Name = "cmbOdaTipi";
+            cmbOdaTipi.Size = new Size(121, 23);
+            cmbOdaTipi.TabIndex = 0;
+            cmbOdaTipi.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             label15.Location = new Point(21, 159);
-            label15.Name = "label15";
+            // 
             label15.Size = new Size(76, 15);
+            label15.Location = new Point(30, 265);
+            label15.Margin = new Padding(4, 0, 4, 0);
+            label15.Name = "label15";
+            label15.Size = new Size(113, 25);
             label15.TabIndex = 1;
             label15.Text = "Giriş Tarihiniz";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
             label1.Location = new Point(21, 34);
-            label1.Name = "label1";
+            // 
             label1.Size = new Size(71, 15);
+            label1.Location = new Point(30, 57);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(107, 25);
             label1.TabIndex = 1;
             label1.Text = "Otel Seçiniz:";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
             label3.Location = new Point(21, 63);
-            label3.Name = "label3";
+            // 
             label3.Size = new Size(93, 15);
+            label3.Location = new Point(30, 105);
+            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(141, 25);
             label3.TabIndex = 1;
             label3.Text = "Oda Tipi Seçiniz:";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
             label4.Location = new Point(21, 96);
-            label4.Name = "label4";
+            // 
             label4.Size = new Size(109, 15);
+            label4.Location = new Point(30, 160);
+            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(164, 25);
             label4.TabIndex = 1;
             label4.Text = "Misafir Sayı Seçiniz:";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
             label6.Location = new Point(21, 191);
-            label6.Name = "label6";
+            // 
             label6.Size = new Size(78, 15);
+            label6.Location = new Point(30, 318);
+            label6.Margin = new Padding(4, 0, 4, 0);
+            label6.Name = "label6";
+            label6.Size = new Size(115, 25);
             label6.TabIndex = 1;
             label6.Text = "Çıkış Tarihiniz";
-            // 
             // label2
-            // 
-            label2.Location = new Point(0, 0);
-            label2.Name = "label2";
             label2.Size = new Size(100, 23);
-            label2.TabIndex = 0;
-            label2.Text = "Rezervasyon";
-            // 
+            label2.Location = new Point(0, 0);
+            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Name = "label2";
             // dateTimePicker3
-            // 
+            label2.TabIndex = 0;
             dateTimePicker3.Location = new Point(117, 153);
             dateTimePicker3.Name = "dateTimePicker3";
             dateTimePicker3.Size = new Size(189, 23);
             dateTimePicker3.TabIndex = 3;
-            // 
+            dtGiriş.Location = new Point(117, 153);
             // numericUpDown1
-            // 
+            dtGiriş.Size = new Size(189, 23);
             numericUpDown1.Location = new Point(169, 88);
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(72, 23);
             numericUpDown1.TabIndex = 2;
-            // 
+            nmrMisafirSayısı.Location = new Point(169, 88);
             // dateTimePicker2
-            // 
+            nmrMisafirSayısı.Size = new Size(72, 23);
             dateTimePicker2.Location = new Point(117, 185);
             dateTimePicker2.Name = "dateTimePicker2";
             dateTimePicker2.Size = new Size(190, 23);
             dateTimePicker2.TabIndex = 3;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
+            dtÇıkış.Location = new Point(117, 185);
+            dtÇıkış.Name = "dtÇıkış";
+            dtÇıkış.Size = new Size(190, 23);
+            dtÇıkış.TabIndex = 3;
             label7.Location = new Point(258, 63);
-            label7.Name = "label7";
+            // 
             label7.Size = new Size(69, 15);
+            label7.Location = new Point(369, 105);
+            label7.Margin = new Padding(4, 0, 4, 0);
+            label7.Name = "label7";
+            label7.Size = new Size(103, 25);
             label7.TabIndex = 4;
             label7.Text = "Fiyat Bilgisi:";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
             label8.Location = new Point(330, 63);
-            label8.Name = "label8";
+            // 
             label8.Size = new Size(19, 15);
-            label8.TabIndex = 5;
-            label8.Text = "$$";
-            // 
-            // button1
-            // 
+            label8.Location = new Point(471, 105);
+            label8.Margin = new Padding(4, 0, 4, 0);
+            label8.Name = "label8";
             button1.Location = new Point(307, 217);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
@@ -321,63 +319,63 @@
             button1.Text = "Kaydet";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
+            button1.Text = "Kaydet";
+            button1.UseVisualStyleBackColor = true;
+            button1.Text = "Kaydet";
+            button1.UseVisualStyleBackColor = true;
+            button1.Text = "Kaydet";
+            button1.UseVisualStyleBackColor = true;
             label9.Location = new Point(21, 225);
-            label9.Name = "label9";
+            // 
             label9.Size = new Size(111, 15);
-            label9.TabIndex = 7;
-            label9.Text = "Ödeme Yönteminiz:";
-            // 
+            label9.Location = new Point(30, 375);
+            label9.Margin = new Padding(4, 0, 4, 0);
+            label9.Name = "label9";
             // comboBox3
-            // 
+            label9.TabIndex = 7;
             comboBox3.FormattingEnabled = true;
             comboBox3.Location = new Point(138, 217);
             comboBox3.Name = "comboBox3";
             comboBox3.Size = new Size(121, 23);
             comboBox3.TabIndex = 8;
-            // 
-            // groupBox1
-            // 
+            cmbÖdeme.Location = new Point(138, 217);
             groupBox1.Controls.Add(button6);
             groupBox1.Controls.Add(comboBox3);
-            groupBox1.Controls.Add(label9);
+            cmbÖdeme.Size = new Size(121, 23);
+            groupBox1.Controls.Add(comboBox3);
+            // 
             groupBox1.Controls.Add(button1);
-            groupBox1.Controls.Add(label8);
-            groupBox1.Controls.Add(label7);
+            // 
+            groupBox1.Controls.Add(comboBox3);
             groupBox1.Controls.Add(dateTimePicker2);
             groupBox1.Controls.Add(numericUpDown1);
             groupBox1.Controls.Add(dateTimePicker3);
-            groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(label6);
-            groupBox1.Controls.Add(label4);
-            groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(label1);
-            groupBox1.Controls.Add(label15);
+            groupBox1.Controls.Add(label7);
+            groupBox1.Controls.Add(dtÇıkış);
+            groupBox1.Controls.Add(nmrMisafirSayısı);
+            groupBox1.Controls.Add(dtGiriş);
             groupBox1.Controls.Add(comboBox2);
             groupBox1.Controls.Add(comboBox1);
             groupBox1.Location = new Point(3, 3);
-            groupBox1.Name = "groupBox1";
+            groupBox1.Controls.Add(comboBox1);
             groupBox1.Size = new Size(396, 287);
+            groupBox1.Controls.Add(comboBox1);
+            groupBox1.Size = new Size(388, 287);
+            groupBox1.Controls.Add(comboBox1);
+            groupBox1.Size = new Size(388, 287);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(388, 287);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
-            groupBox1.Text = "Rezervasyon";
-            groupBox1.Enter += groupBox1_Enter;
-            // 
-            // groupBox3
-            // 
-            groupBox3.Controls.Add(label16);
             groupBox3.Controls.Add(dataGridView1);
             groupBox3.Controls.Add(textBox6);
             groupBox3.Location = new Point(3, 325);
-            groupBox3.Name = "groupBox3";
+            groupBox3.Controls.Add(textBox6);
             groupBox3.Size = new Size(785, 310);
-            groupBox3.TabIndex = 2;
-            groupBox3.TabStop = false;
-            groupBox3.Text = "Rezervasyonlar";
-            // 
+            groupBox3.Controls.Add(textBox6);
+            groupBox3.Size = new Size(747, 282);
+            groupBox3.Controls.Add(textBox6);
+            groupBox3.Size = new Size(747, 282);
             // label16
             // 
             label16.AutoSize = true;
@@ -389,7 +387,7 @@
             label16.Click += label16_Click;
             // 
             // dataGridView1
-            // 
+            groupBox3.Size = new Size(747, 282);
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(21, 72);
             dataGridView1.Name = "dataGridView1";
@@ -403,36 +401,36 @@
             textBox6.Name = "textBox6";
             textBox6.Size = new Size(100, 23);
             textBox6.TabIndex = 4;
-            // 
-            // button3
-            // 
+            dataGridView1.Size = new Size(710, 192);
+            dataGridView1.TabIndex = 0;
+            dataGridView1.Size = new Size(710, 192);
             button3.Location = new Point(165, 296);
             button3.Name = "button3";
             button3.Size = new Size(75, 23);
             button3.TabIndex = 3;
             button3.Text = "Sil";
             button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
+            button3.Text = "Sil";
+            button3.UseVisualStyleBackColor = true;
+            button3.Text = "Sil";
             button4.Location = new Point(84, 296);
             button4.Name = "button4";
             button4.Size = new Size(75, 23);
             button4.TabIndex = 3;
             button4.Text = "Listele";
             button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
+            button4.Text = "Listele";
+            button4.UseVisualStyleBackColor = true;
+            button4.Text = "Listele";
             button5.Location = new Point(3, 296);
             button5.Name = "button5";
             button5.Size = new Size(75, 23);
             button5.TabIndex = 3;
             button5.Text = "Güncelle";
             button5.UseVisualStyleBackColor = true;
-            // 
+            button5.Text = "Güncelle";
             // flowLayoutPanel1
-            // 
+            button5.Text = "Güncelle";
             flowLayoutPanel1.Controls.Add(groupBox1);
             flowLayoutPanel1.Controls.Add(groupBox2);
             flowLayoutPanel1.Controls.Add(button5);
@@ -444,9 +442,9 @@
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(800, 647);
             flowLayoutPanel1.TabIndex = 9;
-            // 
+            textBox6.Size = new Size(100, 23);
             // button6
-            // 
+            textBox6.Size = new Size(100, 23);
             button6.Location = new Point(274, 89);
             button6.Name = "button6";
             button6.Size = new Size(95, 48);
@@ -454,67 +452,72 @@
             button6.Text = "Misafir Bilgilerini Girin";
             button6.UseVisualStyleBackColor = true;
             button6.Click += button6_Click;
-            // 
-            // Frm_Booking
-            // 
+            label16.Text = "Rezervasyon Sahibi:";
+            label16.Click += label16_Click;
+            label16.Text = "Rezervasyon Sahibi:";
+            label16.Click += label16_Click;
+            label16.Text = "Rezervasyon Sahibi:";
             AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(800, 647);
+            // 
             Controls.Add(flowLayoutPanel1);
+            Controls.Add(groupBox2);
+            Controls.Add(groupBox1);
+            Controls.Add(groupBox2);
+            Controls.Add(groupBox1);
+            Controls.Add(groupBox1);
             Name = "Frm_Booking";
-            Text = "Frm_Booking";
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             Load += Frm_Booking_Load;
             groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            groupBox3.ResumeLayout(false);
-            groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             flowLayoutPanel1.ResumeLayout(false);
-            ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)nmrMisafirSayısı).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+        private DateTimePicker dateTimePicker1;
         }
 
-        #endregion
-        private DateTimePicker dateTimePicker1;
-        private Label label5;
-        private GroupBox groupBox2;
         private TextBox textBox5;
         private TextBox textBox4;
         private TextBox textBox3;
-        private Label label14;
+        private GroupBox groupBox2;
         private TextBox textBox2;
-        private Label label13;
+        private TextBox txtEmail;
         private TextBox textBox1;
-        private Label label12;
-        private Label label11;
-        private Label label10;
+        private Label label14;
+        private TextBox txtMisafirSoyad;
+        private Label label13;
         private Button button2;
         private ComboBox comboBox1;
         private ComboBox comboBox2;
+        private Label label10;
+        private Button btnMisafirEkle;
+        private ComboBox cmbOtel;
+        private ComboBox cmbOdaTipi;
         private Label label15;
         private Label label1;
-        private Label label3;
-        private Label label4;
-        private Label label6;
-        private Label label2;
         private DateTimePicker dateTimePicker3;
         private NumericUpDown numericUpDown1;
         private DateTimePicker dateTimePicker2;
-        private Label label7;
-        private Label label8;
+        private Label label2;
+        private DateTimePicker dtGiriş;
         private Button button1;
-        private Label label9;
+        private DateTimePicker dtÇıkış;
         private ComboBox comboBox3;
-        private GroupBox groupBox1;
-        private GroupBox groupBox3;
+        private Label label8;
+        private Button btnKaydet;
         private DataGridView dataGridView1;
         private Button button3;
         private Button button4;
         private Button button5;
         private TextBox textBox6;
+        private Button btnSil;
+        private Button btnListele;
+        private Button btnGüncelle;
+        private TextBox txtRezervasyonSahibi;
         private Label label16;
         private FlowLayoutPanel flowLayoutPanel1;
         private Button button6;
