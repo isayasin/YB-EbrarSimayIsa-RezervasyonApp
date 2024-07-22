@@ -58,7 +58,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("RoomID")
+                    b.Property<Guid>("RoomID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("TotalPrice")
@@ -338,7 +338,9 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                 {
                     b.HasOne("YB_EbrarSimayIsa_RezervasyonApp.Entities.Models.Room", "Room")
                         .WithMany("Bookings")
-                        .HasForeignKey("RoomID");
+                        .HasForeignKey("RoomID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Room");
                 });

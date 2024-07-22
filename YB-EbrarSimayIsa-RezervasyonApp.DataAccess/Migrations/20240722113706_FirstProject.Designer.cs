@@ -12,8 +12,8 @@ using YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Context;
 namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240722100657_migFirst")]
-    partial class migFirst
+    [Migration("20240722113706_FirstProject")]
+    partial class FirstProject
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -61,7 +61,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("RoomID")
+                    b.Property<Guid>("RoomID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("TotalPrice")
@@ -341,7 +341,9 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                 {
                     b.HasOne("YB_EbrarSimayIsa_RezervasyonApp.Entities.Models.Room", "Room")
                         .WithMany("Bookings")
-                        .HasForeignKey("RoomID");
+                        .HasForeignKey("RoomID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Room");
                 });

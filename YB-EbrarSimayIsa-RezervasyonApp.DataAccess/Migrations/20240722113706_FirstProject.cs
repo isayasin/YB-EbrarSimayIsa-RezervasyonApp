@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class FirstApp : Migration
+    public partial class FirstProject : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -141,7 +141,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     CheckinDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CheckoutDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    RoomID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    RoomID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ISActive = table.Column<bool>(type: "bit", nullable: false),
                     CreateAtDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateAtDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -154,7 +154,8 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                         name: "FK_Bookings_Rooms_RoomID",
                         column: x => x.RoomID,
                         principalTable: "Rooms",
-                        principalColumn: "ID");
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
