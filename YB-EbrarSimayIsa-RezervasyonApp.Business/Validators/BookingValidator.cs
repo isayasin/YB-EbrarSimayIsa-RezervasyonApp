@@ -12,7 +12,13 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.Business.Validators
     {
         public BookingValidator()
         {
-            
+            RuleFor(b => b.CheckinDate)
+                .NotEmpty()
+                .WithMessage("Check in boş bırakılamaz");
+            RuleFor(b => b.CheckoutDate)
+            .NotEmpty()
+            .WithMessage("Check out boş bırakılamaz");
+
         }
     }
 }
