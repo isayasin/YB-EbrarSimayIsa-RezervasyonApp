@@ -22,7 +22,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source = BPC12\\SQLEXPRESS; Initial Catalog = RezervasyonDb ; Integrated Security = True; Trust Server Certificate = True");
+            optionsBuilder.UseSqlServer("Data Source = Ebrar; Initial Catalog = RezervasyonDb ; Integrated Security = True; Trust Server Certificate = True");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
