@@ -83,9 +83,10 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(15, 191);
+            label5.Location = new Point(21, 318);
+            label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
-            label5.Size = new Size(81, 15);
+            label5.Size = new Size(122, 25);
             label5.TabIndex = 1;
             label5.Text = "Doğum Tarihi:";
             label5.Click += label5_Click;
@@ -105,9 +106,11 @@
             groupBox2.Controls.Add(label11);
             groupBox2.Controls.Add(label10);
             groupBox2.Controls.Add(label5);
-            groupBox2.Location = new Point(429, 15);
+            groupBox2.Location = new Point(613, 25);
+            groupBox2.Margin = new Padding(4, 5, 4, 5);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(339, 287);
+            groupBox2.Padding = new Padding(4, 5, 4, 5);
+            groupBox2.Size = new Size(484, 478);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Misafir Bilgileri";
@@ -161,9 +164,10 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(15, 122);
+            label13.Location = new Point(21, 203);
+            label13.Margin = new Padding(4, 0, 4, 0);
             label13.Name = "label13";
-            label13.Size = new Size(36, 15);
+            label13.Size = new Size(54, 25);
             label13.TabIndex = 0;
             label13.Text = "Email";
             // 
@@ -221,53 +225,59 @@
             // label15
             // 
             label15.AutoSize = true;
-            label15.Location = new Point(21, 159);
+            label15.Location = new Point(30, 265);
+            label15.Margin = new Padding(4, 0, 4, 0);
             label15.Name = "label15";
-            label15.Size = new Size(76, 15);
+            label15.Size = new Size(113, 25);
             label15.TabIndex = 1;
             label15.Text = "Giriş Tarihiniz";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(21, 34);
+            label1.Location = new Point(30, 57);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(71, 15);
+            label1.Size = new Size(107, 25);
             label1.TabIndex = 1;
             label1.Text = "Otel Seçiniz:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(21, 63);
+            label3.Location = new Point(30, 105);
+            label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(93, 15);
+            label3.Size = new Size(141, 25);
             label3.TabIndex = 1;
             label3.Text = "Oda Tipi Seçiniz:";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(21, 96);
+            label4.Location = new Point(30, 160);
+            label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(109, 15);
+            label4.Size = new Size(164, 25);
             label4.TabIndex = 1;
             label4.Text = "Misafir Sayı Seçiniz:";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(21, 191);
+            label6.Location = new Point(30, 318);
+            label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
-            label6.Size = new Size(78, 15);
+            label6.Size = new Size(115, 25);
             label6.TabIndex = 1;
             label6.Text = "Çıkış Tarihiniz";
             // 
             // label2
             // 
             label2.Location = new Point(0, 0);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(100, 23);
+            label2.Size = new Size(143, 38);
             label2.TabIndex = 0;
             label2.Text = "Rezervasyon";
             // 
@@ -295,18 +305,20 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(258, 63);
+            label7.Location = new Point(369, 105);
+            label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
-            label7.Size = new Size(69, 15);
+            label7.Size = new Size(103, 25);
             label7.TabIndex = 4;
             label7.Text = "Fiyat Bilgisi:";
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(330, 63);
+            label8.Location = new Point(471, 105);
+            label8.Margin = new Padding(4, 0, 4, 0);
             label8.Name = "label8";
-            label8.Size = new Size(19, 15);
+            label8.Size = new Size(32, 25);
             label8.TabIndex = 5;
             label8.Text = "$$";
             // 
@@ -323,9 +335,10 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(21, 225);
+            label9.Location = new Point(30, 375);
+            label9.Margin = new Padding(4, 0, 4, 0);
             label9.Name = "label9";
-            label9.Size = new Size(111, 15);
+            label9.Size = new Size(166, 25);
             label9.TabIndex = 7;
             label9.Text = "Ödeme Yönteminiz:";
             // 
@@ -357,7 +370,8 @@
             groupBox1.Controls.Add(cmbOtel);
             groupBox1.Location = new Point(21, 15);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(388, 287);
+            groupBox1.Padding = new Padding(4, 5, 4, 5);
+            groupBox1.Size = new Size(554, 478);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Rezervasyon";
@@ -370,7 +384,8 @@
             groupBox3.Controls.Add(txtRezervasyonSahibi);
             groupBox3.Location = new Point(21, 353);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(747, 282);
+            groupBox3.Padding = new Padding(4, 5, 4, 5);
+            groupBox3.Size = new Size(1067, 470);
             groupBox3.TabIndex = 2;
             groupBox3.TabStop = false;
             groupBox3.Text = "Rezervasyonlar";
@@ -429,7 +444,7 @@
             // 
             // Frm_Booking
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(800, 647);
@@ -439,8 +454,10 @@
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "Frm_Booking";
             Text = "Frm_Booking";
+            Load += Frm_Booking_Load;
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)nmrMisafirSayısı).EndInit();

@@ -8,7 +8,7 @@ using YB_EbrarSimayIsa_RezervasyonApp.Entities.Models;
 
 namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Repositories
 {
-    internal class GuestRepository : GenericRepository<Guest>
+    public class GuestRepository : GenericRepository<Guest>
     {
         public GuestRepository(ApplicationDbContext context) : base(context)
         {
