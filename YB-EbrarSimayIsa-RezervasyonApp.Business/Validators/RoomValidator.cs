@@ -10,5 +10,13 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.Business.Validators
 {
     public class RoomValidator: AbstractValidator<Room>
     {
+
+        public RoomValidator()
+        {
+            RuleFor(r => r.Status)
+                .NotEmpty()
+                .WithMessage("Statu bos birakilamaz.");
+
+        }
     }
 }

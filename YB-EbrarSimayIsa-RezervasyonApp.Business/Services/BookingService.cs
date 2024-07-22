@@ -1,9 +1,11 @@
-﻿using System;
+﻿using FluentValidation.Results;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using YB_EbrarSimayIsa_RezervasyonApp.Business.Abstractions;
+using YB_EbrarSimayIsa_RezervasyonApp.Business.Validators;
 using YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Repositories;
 using YB_EbrarSimayIsa_RezervasyonApp.Entities.Models;
 
@@ -21,7 +23,16 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.Business.Services
 
         public void Add(Booking entity)
         {
-            throw new NotImplementedException();
+            BookingValidator bVal = new();
+            ValidationResult result = bVal.Validate(entity);
+
+            if (!result.IsValid)
+            {
+                throw new Exception(string.Join(",", result.Errors));
+            }
+
+            _bookingRepository.Add(entity);
+
         }
 
         public void Delete(Guid id)
