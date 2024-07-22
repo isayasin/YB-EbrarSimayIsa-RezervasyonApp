@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class FirstProject : Migration
+    public partial class migFirst : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -42,8 +42,8 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Stars = table.Column<int>(type: "int", nullable: false),
-                    CheckinTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CheckoutTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CheckinTime = table.Column<TimeOnly>(type: "time", nullable: false),
+                    CheckoutTime = table.Column<TimeOnly>(type: "time", nullable: false),
                     ISActive = table.Column<bool>(type: "bit", nullable: false),
                     CreateAtDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateAtDate = table.Column<DateTime>(type: "datetime2", nullable: false),

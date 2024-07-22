@@ -14,8 +14,8 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.Entities.Models
         public string? Phone { get; set; }
         public string? Email { get; set; }
         public int Stars { get; set; }
-        public DateTime CheckinTime { get; set; }
-        public DateTime CheckoutTime { get; set; }
+        public TimeOnly CheckinTime { get; set; }
+        public TimeOnly CheckoutTime { get; set; }
         public ICollection<Staff>? Staffs { get; set; }
         public ICollection<Room>? Rooms { get; set; }
 

@@ -29,11 +29,31 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Context
             //ebrar
             //optionsBuilder.UseSqlServer("Data Source = EBRAR; Initial Catalog = RezervasyonDb ; Integrated Security = True; Trust Server Certificate = True");
             //İsa Conn
-            //optionsBuilder.UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = RezervasyonDb ; Integrated Security = True; Trust Server Certificate = True");
+            optionsBuilder.UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = RezervasyonDb ; Integrated Security = True; Trust Server Certificate = True");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Hotel>().HasData(
+                new
+                {
+                  //ID = (Guid)"FB211AD4-5C1D-44AB-85E0-0B36F166F134",
+                  ID = Guid.NewGuid(),
+                  Name = "Hilton",
+                  Address = "İstanbul-Basaksehir",
+                  Phone = "555 555 55 55",
+                  Email = "email@gmail.com",
+                  Stars = 4,
+                  CheckinTime = new TimeOnly(14, 0),
+                  CheckoutTime = new TimeOnly(11, 0),
+                  CreateAtDate = new DateTime(2024, 6, 22),
+                  UpdateAtDate = new DateTime(2024, 7, 22),
+                  ISActive = true,
+                  IsDeleted = false,
+                }
+                );
+            
         }
     }
 }

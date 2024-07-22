@@ -12,8 +12,8 @@ using YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Context;
 namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240722113706_FirstProject")]
-    partial class FirstProject
+    [Migration("20240722125805_second")]
+    partial class second
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -127,11 +127,11 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CheckinTime")
-                        .HasColumnType("datetime2");
+                    b.Property<TimeOnly>("CheckinTime")
+                        .HasColumnType("time");
 
-                    b.Property<DateTime>("CheckoutTime")
-                        .HasColumnType("datetime2");
+                    b.Property<TimeOnly>("CheckoutTime")
+                        .HasColumnType("time");
 
                     b.Property<DateTime>("CreateAtDate")
                         .HasColumnType("datetime2");
@@ -160,6 +160,23 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Hotels");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = new Guid("722a5201-2c86-466a-b15f-d7e0d4408fde"),
+                            Address = "İstanbul-Basaksehir",
+                            CheckinTime = new TimeOnly(14, 0, 0),
+                            CheckoutTime = new TimeOnly(11, 0, 0),
+                            CreateAtDate = new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "email@gmail.com",
+                            ISActive = true,
+                            IsDeleted = false,
+                            Name = "Hilton",
+                            Phone = "555 555 55 55",
+                            Stars = 4,
+                            UpdateAtDate = new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("YB_EbrarSimayIsa_RezervasyonApp.Entities.Models.Payment", b =>
