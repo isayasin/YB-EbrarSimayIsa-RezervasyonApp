@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,14 +8,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using YB_EbrarSimayIsa_RezervasyonApp.Business.Services;
+using YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Context;
+using YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Repositories;
 using YB_EbrarSimayIsa_RezervasyonApp.Entities.Models;
 
 namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
 {
     public partial class Frm_Booking : Form
     {
+
+        private readonly ApplicationDbContext _context;
+        private readonly BookingService _bookingService;
+        private readonly BookingRepository _bookingRepository;
         public Frm_Booking()
         {
+            _context = new ApplicationDbContext();
+            _bookingRepository = new BookingRepository(_context);
+            _bookingService = new BookingService(_bookingRepository);
             InitializeComponent();
         }
 

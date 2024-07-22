@@ -49,11 +49,41 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Context
                   CheckoutTime = new TimeOnly(11, 0),
                   CreateAtDate = new DateTime(2024, 6, 22),
                   UpdateAtDate = new DateTime(2024, 7, 22),
-                  ISActive = true,
+                  IsActive = true,
                   IsDeleted = false,
                 }
                 );
-            
+
+
+
+
+            modelBuilder.Entity<Booking>()
+           .HasMany(b => b.Guests)
+           .WithMany(g => g.Bookings)
+           .UsingEntity<Dictionary<string, object>>(
+               "BookingGuest",
+               bg => bg.HasOne<Guest>().WithMany().HasForeignKey("GuestId"),
+               bg => bg.HasOne<Booking>().WithMany().HasForeignKey("BookingId"));
+
+
+            modelBuilder.Entity<Guest>().HasData(
+           new
+           {
+               //ID = (Guid)"FB211AD4-5C1D-44AB-85E0-0B36F166F134",
+               ID = Guid.NewGuid(),
+               FirstName = "Simay",
+               LastName = "Seyman",
+               DateOfBirth = new DateTime(2020, 6, 22),
+               Address = "Basaksehir",
+               Phone = "5454545454",
+               Email = "simay@gmail.com",
+               IsActive = true,
+               CreateAtDate = new DateTime(2024, 6, 22),
+               UpdateAtDate = new DateTime(2024, 7, 22),
+               IsDeleted = false,
+           }
+           );
+
         }
     }
 }
