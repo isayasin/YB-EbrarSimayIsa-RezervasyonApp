@@ -7,4 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\YB-EbrarSimayIsa-RezervasyonApp.DataAccess\YB-EbrarSimayIsa-RezervasyonApp.DataAccess.csproj" />
+    <ProjectReference Include="..\YB-EbrarSimayIsa-RezervasyonApp.Entities\YB-EbrarSimayIsa-RezervasyonApp.Entities.csproj" />
+  </ItemGroup>
+
 </Project>
