@@ -24,12 +24,17 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Repositories
 
         public void Add(T entity)
         {
+            entity.CreateAtDate = DateTime.Now;
+            entity.IsDeleted = false;
+            entity.IsActive = true;
             _dbSet.Add(entity);
             _context.SaveChanges();
         }
 
         public void Delete(Guid id)
         {
+            GetByID(id).IsDeleted = true;
+            GetByID(id).IsActive = false;
             _dbSet.Remove(GetByID(id));
             _context.SaveChanges();
         }
@@ -52,6 +57,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Repositories
 
         public void Update(T entity)
         {
+            entity.UpdateAtDate = DateTime.Now;
             _context.SaveChanges();
         }
     }

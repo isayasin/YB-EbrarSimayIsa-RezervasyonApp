@@ -14,7 +14,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.Entities.Abstractions
         }
 
         public Guid ID { get; set; }
-        public bool ISActive { get; set; }
+        public bool IsActive { get; set; }
         public DateTime CreateAtDate { get; set; }
         public DateTime UpdateAtDate { get; set; }
         public bool IsDeleted { get; set; }
