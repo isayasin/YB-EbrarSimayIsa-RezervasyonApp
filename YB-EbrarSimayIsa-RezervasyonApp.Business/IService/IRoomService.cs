@@ -8,8 +8,9 @@ using YB_EbrarSimayIsa_RezervasyonApp.Entities.Models;
 
 namespace YB_EbrarSimayIsa_RezervasyonApp.Business.IService
 {
-    public interface IRoomTypeService : IService<RoomType>
+    public interface IRoomService : IService<Room>
     {
-        IEnumerable<RoomType> GetRoomTypesByHotelId(Guid hotelId);
+        IEnumerable<Room> GetRoomsByHotelId(Guid hotelId);
+        IEnumerable<Room> GetRoomsByHotelAndRoomType(Guid hotelId, Guid roomTypeId);
     }
 }

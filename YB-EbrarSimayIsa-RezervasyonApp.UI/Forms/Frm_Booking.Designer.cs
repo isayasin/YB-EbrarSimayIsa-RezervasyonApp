@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            cmbPaymentMethod = new ComboBox();
+            label8 = new Label();
+            lblAmount = new Label();
+            label7 = new Label();
             lstGuests = new ListBox();
             btnGuestInfo = new Button();
             btnKaydet = new Button();
@@ -44,13 +48,26 @@
             cmbRoomType = new ComboBox();
             cmbHotel = new ComboBox();
             label1 = new Label();
+            groupBox2 = new GroupBox();
+            dgwRezervations = new DataGridView();
+            btnDelete = new Button();
+            btnUpdate = new Button();
+            txtRezervationsSearch = new TextBox();
+            label9 = new Label();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nmrGuest).BeginInit();
+            groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgwRezervations).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
             // 
             groupBox1.BackColor = SystemColors.ActiveCaption;
+            groupBox1.Controls.Add(label9);
+            groupBox1.Controls.Add(cmbPaymentMethod);
+            groupBox1.Controls.Add(label8);
+            groupBox1.Controls.Add(lblAmount);
+            groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(lstGuests);
             groupBox1.Controls.Add(btnGuestInfo);
             groupBox1.Controls.Add(btnKaydet);
@@ -68,18 +85,53 @@
             groupBox1.Controls.Add(label1);
             groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(776, 293);
+            groupBox1.Size = new Size(833, 363);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Rezervasyon işlemleri";
+            // 
+            // cmbPaymentMethod
+            // 
+            cmbPaymentMethod.FormattingEnabled = true;
+            cmbPaymentMethod.Location = new Point(171, 284);
+            cmbPaymentMethod.Name = "cmbPaymentMethod";
+            cmbPaymentMethod.Size = new Size(216, 23);
+            cmbPaymentMethod.TabIndex = 16;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(15, 287);
+            label8.Name = "label8";
+            label8.Size = new Size(96, 15);
+            label8.TabIndex = 15;
+            label8.Text = "Ödeme Yöntemi:";
+            // 
+            // lblAmount
+            // 
+            lblAmount.AutoSize = true;
+            lblAmount.Location = new Point(225, 246);
+            lblAmount.Name = "lblAmount";
+            lblAmount.Size = new Size(19, 15);
+            lblAmount.TabIndex = 14;
+            lblAmount.Text = "$$";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(140, 246);
+            label7.Name = "label7";
+            label7.Size = new Size(79, 15);
+            label7.TabIndex = 13;
+            label7.Text = "Toplam Tutar:";
             // 
             // lstGuests
             // 
             lstGuests.FormattingEnabled = true;
             lstGuests.ItemHeight = 15;
-            lstGuests.Location = new Point(451, 25);
+            lstGuests.Location = new Point(506, 47);
             lstGuests.Name = "lstGuests";
-            lstGuests.Size = new Size(264, 214);
+            lstGuests.Size = new Size(299, 214);
             lstGuests.TabIndex = 12;
             // 
             // btnGuestInfo
@@ -94,7 +146,7 @@
             // 
             // btnKaydet
             // 
-            btnKaydet.Location = new Point(171, 256);
+            btnKaydet.Location = new Point(312, 324);
             btnKaydet.Name = "btnKaydet";
             btnKaydet.Size = new Size(75, 23);
             btnKaydet.TabIndex = 10;
@@ -105,7 +157,7 @@
             // dateTimePicker2
             // 
             dateTimePicker2.Format = DateTimePickerFormat.Short;
-            dateTimePicker2.Location = new Point(125, 211);
+            dateTimePicker2.Location = new Point(266, 193);
             dateTimePicker2.Name = "dateTimePicker2";
             dateTimePicker2.Size = new Size(121, 23);
             dateTimePicker2.TabIndex = 9;
@@ -113,7 +165,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(19, 217);
+            label5.Location = new Point(18, 199);
             label5.Name = "label5";
             label5.Size = new Size(66, 15);
             label5.TabIndex = 8;
@@ -122,7 +174,7 @@
             // dateTimePicker1
             // 
             dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(125, 180);
+            dateTimePicker1.Location = new Point(266, 162);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(121, 23);
             dateTimePicker1.TabIndex = 7;
@@ -130,7 +182,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(18, 186);
+            label4.Location = new Point(18, 168);
             label4.Name = "label4";
             label4.Size = new Size(67, 15);
             label4.TabIndex = 6;
@@ -151,6 +203,7 @@
             nmrGuest.Name = "nmrGuest";
             nmrGuest.Size = new Size(63, 23);
             nmrGuest.TabIndex = 4;
+            nmrGuest.ValueChanged += nmrGuest_ValueChanged;
             // 
             // label6
             // 
@@ -166,7 +219,7 @@
             cmbRoomNumber.FormattingEnabled = true;
             cmbRoomNumber.Location = new Point(171, 88);
             cmbRoomNumber.Name = "cmbRoomNumber";
-            cmbRoomNumber.Size = new Size(121, 23);
+            cmbRoomNumber.Size = new Size(216, 23);
             cmbRoomNumber.TabIndex = 2;
             // 
             // label2
@@ -183,7 +236,7 @@
             cmbRoomType.FormattingEnabled = true;
             cmbRoomType.Location = new Point(171, 54);
             cmbRoomType.Name = "cmbRoomType";
-            cmbRoomType.Size = new Size(121, 23);
+            cmbRoomType.Size = new Size(216, 23);
             cmbRoomType.TabIndex = 2;
             cmbRoomType.SelectedIndexChanged += cmbRoomType_SelectedIndexChanged;
             // 
@@ -192,7 +245,7 @@
             cmbHotel.FormattingEnabled = true;
             cmbHotel.Location = new Point(171, 22);
             cmbHotel.Name = "cmbHotel";
-            cmbHotel.Size = new Size(121, 23);
+            cmbHotel.Size = new Size(216, 23);
             cmbHotel.TabIndex = 1;
             cmbHotel.SelectedIndexChanged += cmbHotel_SelectedIndexChanged;
             // 
@@ -205,19 +258,80 @@
             label1.TabIndex = 0;
             label1.Text = "Otel Seçiniz:";
             // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(dgwRezervations);
+            groupBox2.Location = new Point(12, 408);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(833, 197);
+            groupBox2.TabIndex = 2;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Rezervasyonlar";
+            // 
+            // dgwRezervations
+            // 
+            dgwRezervations.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgwRezervations.Dock = DockStyle.Fill;
+            dgwRezervations.Location = new Point(3, 19);
+            dgwRezervations.Name = "dgwRezervations";
+            dgwRezervations.Size = new Size(827, 175);
+            dgwRezervations.TabIndex = 0;
+            // 
+            // btnDelete
+            // 
+            btnDelete.Location = new Point(12, 381);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(75, 23);
+            btnDelete.TabIndex = 3;
+            btnDelete.Text = "Sil";
+            btnDelete.UseVisualStyleBackColor = true;
+            // 
+            // btnUpdate
+            // 
+            btnUpdate.Location = new Point(105, 381);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(75, 23);
+            btnUpdate.TabIndex = 3;
+            btnUpdate.Text = "Güncelle";
+            btnUpdate.UseVisualStyleBackColor = true;
+            // 
+            // txtRezervationsSearch
+            // 
+            txtRezervationsSearch.Location = new Point(368, 382);
+            txtRezervationsSearch.Name = "txtRezervationsSearch";
+            txtRezervationsSearch.Size = new Size(178, 23);
+            txtRezervationsSearch.TabIndex = 4;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(530, 23);
+            label9.Name = "label9";
+            label9.Size = new Size(78, 15);
+            label9.TabIndex = 17;
+            label9.Text = "Misafir Listesi";
+            // 
             // Frm_Booking
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(800, 534);
+            ClientSize = new Size(854, 617);
+            Controls.Add(txtRezervationsSearch);
+            Controls.Add(btnUpdate);
+            Controls.Add(btnDelete);
+            Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "Frm_Booking";
             Text = "Form2";
+            Load += Frm_Booking_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)nmrGuest).EndInit();
+            groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgwRezervations).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -238,5 +352,15 @@
         private ListBox lstGuests;
         private Label label6;
         private ComboBox cmbRoomNumber;
+        private Label label7;
+        private Label lblAmount;
+        private Label label8;
+        private ComboBox cmbPaymentMethod;
+        private GroupBox groupBox2;
+        private DataGridView dgwRezervations;
+        private Button btnDelete;
+        private Button btnUpdate;
+        private TextBox txtRezervationsSearch;
+        private Label label9;
     }
 }

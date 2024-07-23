@@ -35,21 +35,6 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
 
         public Frm_Booking()
         {
-            _context = new ApplicationDbContext();
-
-            _bookingRepository = new BookingRepository(_context);
-            _bookingService = new BookingService(_bookingRepository);
-
-            _guestRepository = new GuestRepository(_context);
-            _guestService = new GuestService(_guestRepository);
-
-            _hotelRepository = new HotelRepository(_context);
-            _hotelService = new HotelService(_hotelRepository);
-
-            _roomTypeRepository = new RoomTypeRepository(_context);
-            _roomTypeService = new RoomTypeService(_roomTypeRepository);
-
-
             InitializeComponent();
             _context = new ApplicationDbContext();
             _bookingRepository = new BookingRepository(_context);
@@ -65,7 +50,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
             _roomService = new RoomService(_roomRepository);
 
             _roomTypeRepository = new RoomTypeRepository(_context);
-            _roomTypeService = new RoomTypeService(_roomTypeRepository);
+            _roomTypeService = new RoomTypeService(_roomTypeRepository, _roomRepository);
         }
 
         private List<Guest> guests = new List<Guest>();
@@ -174,8 +159,8 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
         {
             HotelComboFill();
 
-            var roomTypes = _roomTypeService.GetAll();
-            
+            /*var roomTypes = _roomTypeService.GetAll();
+
             // RoomTypes içeriğini bir string'e ekle
             StringBuilder sb = new StringBuilder();
             foreach (var roomType in roomTypes)
@@ -184,7 +169,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
             }
 
             // RoomTypes içeriğini MessageBox ile göster
-            MessageBox.Show(sb.ToString(), "Room Types");
+            MessageBox.Show(sb.ToString(), "Room Types");*/
         }
 
         void HotelComboFill()
@@ -198,21 +183,30 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
 
         void RoomTypeComboFill()
         {
-            cmbRoomType.DataSource = null;
-            cmbRoomType.DataSource = _roomTypeService.GetAll();
-            cmbRoomType.DisplayMember = "DisplayInfo";
-            cmbRoomType.ValueMember = "ID";
-            cmbRoomType.SelectedIndex = -1;
+            if (cmbHotel.SelectedValue is Guid hotelId)
+            {
+                cmbRoomType.DataSource = null;
+                var roomTypes = _roomTypeService.GetRoomTypesByHotelId(hotelId);
+                cmbRoomType.DataSource = roomTypes;
+                cmbRoomType.DisplayMember = "DisplayInfo";
+                cmbRoomType.ValueMember = "ID";
+                cmbRoomType.SelectedIndex = -1;
+
+            }
         }
 
         void RoomNumberFill()
         {
-            cmbRoomType.DataSource = null;
-            //cmbRoomType.DataSource = _roomService.GetById((Guid)cmbRoomType.SelectedValue);
-            cmbRoomType.DataSource = _roomService.GetAll();
-            cmbRoomType.DisplayMember = "RoomNumber";
-            cmbRoomType.ValueMember = "ID";
-            cmbRoomType.SelectedIndex = -1;
+
+            if (cmbHotel.SelectedValue is Guid hotelId && cmbRoomType.SelectedValue is Guid roomTypeId)
+            {
+                cmbRoomNumber.DataSource = null;
+                var rooms = _roomService.GetRoomsByHotelAndRoomType(hotelId, roomTypeId);
+                cmbRoomNumber.DataSource = rooms.ToList();
+                cmbRoomNumber.DisplayMember = "RoomNumber";
+                cmbRoomNumber.ValueMember = "ID";
+                cmbRoomNumber.SelectedIndex = -1;
+            }
         }
 
         private void cmbHotel_SelectedIndexChanged(object sender, EventArgs e)
@@ -224,5 +218,12 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
         {
             RoomNumberFill();
         }
+
+        private void nmrGuest_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }

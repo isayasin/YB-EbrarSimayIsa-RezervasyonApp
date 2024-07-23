@@ -5,13 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using YB_EbrarSimayIsa_RezervasyonApp.Business.Abstractions;
+using YB_EbrarSimayIsa_RezervasyonApp.Business.IService;
 using YB_EbrarSimayIsa_RezervasyonApp.Business.Validators;
 using YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Repositories;
 using YB_EbrarSimayIsa_RezervasyonApp.Entities.Models;
 
 namespace YB_EbrarSimayIsa_RezervasyonApp.Business.Services
 {
-    public class RoomService : IService<Room>
+    public class RoomService : IRoomService
     {
 
         private readonly RoomRepository _roomRepository;
@@ -55,6 +56,20 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.Business.Services
         public Room? GetById(Guid id)
         {
             return _roomRepository.GetByID(id);
+        }
+
+        public IEnumerable<Room> GetRoomsByHotelAndRoomType(Guid hotelId, Guid roomTypeId)
+        {
+            return _roomRepository.GetAll()
+                              .Where(room => room.HotelID == hotelId && room.RoomTypeID == roomTypeId)
+                              .ToList();
+        }
+
+        public IEnumerable<Room> GetRoomsByHotelId(Guid hotelId)
+        {
+            return _roomRepository.GetAll()
+                              .Where(room => room.HotelID == hotelId)
+                              .ToList();
         }
 
         public void Update(Room entity)
