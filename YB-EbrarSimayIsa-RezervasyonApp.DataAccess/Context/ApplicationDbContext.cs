@@ -30,24 +30,24 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Context
             //optionsBuilder.UseSqlServer("Data Source = EBRAR; Initial Catalog = RezervasyonDb ; Integrated Security = True; Trust Server Certificate = True");
 
             //İsa Conn
-            //optionsBuilder.UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = RezervasyonDb ; Integrated Security = True; Trust Server Certificate = True");
+            optionsBuilder.UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = RezervasyonDb ; Integrated Security = True; Trust Server Certificate = True");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Booking entity configuration
             modelBuilder.Entity<Booking>()
                 .Property(b => b.TotalPrice)
-                .HasColumnType("decimal(18,2)"); 
+                .HasColumnType("decimal(10,2)"); 
 
             // Payment entity configuration
             modelBuilder.Entity<Payment>()
                 .Property(p => p.Amount)
-                .HasColumnType("decimal(18,2)");
+                .HasColumnType("decimal(10,2)");
 
             // RoomType entity configuration
             modelBuilder.Entity<RoomType>()
                 .Property(r => r.PricePerNight)
-                .HasColumnType("decimal(18,2)");
+                .HasColumnType("decimal(10,2)");
 
             var hotelId = Guid.NewGuid();
             var hotel2Id = Guid.NewGuid();
