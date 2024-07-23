@@ -157,6 +157,9 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
 
         private void Frm_Booking_Load(object sender, EventArgs e)
         {
+
+            PaymentsComboFill();
+
             HotelComboFill();
 
             /*var roomTypes = _roomTypeService.GetAll();
@@ -170,6 +173,19 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
 
             // RoomTypes içeriğini MessageBox ile göster
             MessageBox.Show(sb.ToString(), "Room Types");*/
+        }
+
+        private void PaymentsComboFill()
+        {
+            List<String> payments = new List<string>();
+            payments.Add("Nakit");
+            payments.Add("Kredi Karti");
+            payments.Add("Banka Karti");
+
+            foreach (var item in payments)
+            {
+                cmbPaymentMethod.Items.Add(item);
+            }
         }
 
         void HotelComboFill()
@@ -230,5 +246,15 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
             dateTimePicker2.MinDate = dateTimePicker1.Value.AddDays(1);
 
         }
+
+
+
+        private void cmbPaymentMethod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var secilen = cmbPaymentMethod.SelectedIndex;
+            MessageBox.Show($"Secilen odeme turu: { secilen.ToString()}");
+        }
+
+
     }
 }

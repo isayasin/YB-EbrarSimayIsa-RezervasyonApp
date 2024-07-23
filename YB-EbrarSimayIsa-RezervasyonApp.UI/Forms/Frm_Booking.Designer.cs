@@ -110,6 +110,7 @@
             cmbPaymentMethod.Name = "cmbPaymentMethod";
             cmbPaymentMethod.Size = new Size(307, 33);
             cmbPaymentMethod.TabIndex = 16;
+            cmbPaymentMethod.SelectedIndexChanged += cmbPaymentMethod_SelectedIndexChanged;
             // 
             // label8
             // 
@@ -386,12 +387,12 @@
         private Label label7;
         private Label lblAmount;
         private Label label8;
-        private ComboBox cmbPaymentMethod;
         private GroupBox groupBox2;
         private DataGridView dgwRezervations;
         private Button btnDelete;
         private Button btnUpdate;
         private TextBox txtRezervationsSearch;
         private Label label9;
+        private ComboBox cmbPaymentMethod;
     }
 }
