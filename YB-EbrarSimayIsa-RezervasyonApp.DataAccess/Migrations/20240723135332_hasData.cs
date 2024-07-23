@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class migFirst : Migration
+    public partial class hasData : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,7 +24,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ISActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CreateAtDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateAtDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -44,7 +46,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     Stars = table.Column<int>(type: "int", nullable: false),
                     CheckinTime = table.Column<TimeOnly>(type: "time", nullable: false),
                     CheckoutTime = table.Column<TimeOnly>(type: "time", nullable: false),
-                    ISActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CreateAtDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateAtDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -63,7 +65,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PricePerNight = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Capacity = table.Column<int>(type: "int", nullable: false),
-                    ISActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CreateAtDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateAtDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -87,7 +89,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     HireDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ISActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CreateAtDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateAtDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -109,9 +111,10 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                 {
                     ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RoomNumber = table.Column<int>(type: "int", nullable: false),
                     RoomTypeID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     HotelID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ISActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CreateAtDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateAtDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -142,7 +145,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     CheckoutDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     RoomID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ISActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CreateAtDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateAtDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -191,7 +194,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     PaymentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PaymentMethod = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BookingID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ISActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CreateAtDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateAtDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -205,6 +208,42 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                         principalTable: "Bookings",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Hotels",
+                columns: new[] { "ID", "Address", "CheckinTime", "CheckoutTime", "CreateAtDate", "Email", "IsActive", "IsDeleted", "Name", "Phone", "Stars", "UpdateAtDate" },
+                values: new object[,]
+                {
+                    { new Guid("32cbd178-16b8-4341-876d-9349cb19a068"), "İstanbul-Kadıköy", new TimeOnly(13, 0, 0), new TimeOnly(10, 0, 0), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "email@gmail.com", true, false, "Movenpick", "555 555 55 55", 5, new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("e9b6c5db-6992-4c6b-98db-d194ed13ba4b"), "İstanbul-Basaksehir", new TimeOnly(14, 0, 0), new TimeOnly(11, 0, 0), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "email@gmail.com", true, false, "Hilton", "555 555 55 55", 4, new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "RoomTypes",
+                columns: new[] { "ID", "Capacity", "CreateAtDate", "Description", "IsActive", "IsDeleted", "Name", "PricePerNight", "UpdateAtDate" },
+                values: new object[,]
+                {
+                    { new Guid("8164ff91-3118-4b1a-977e-32b9731192f8"), 1, new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "Sokak Manzaralı", true, false, "Single", 1000.0m, new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("cbcbd656-c4cc-4e31-8786-21c4f05ab844"), 2, new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "Orman Manzaralı", true, false, "Double", 2500.0m, new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("d7cdb2ab-446d-4645-b560-c98b4d42a5b1"), 4, new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "Deniz Manzaralı", true, false, "Suit", 5000.0m, new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Rooms",
+                columns: new[] { "ID", "CreateAtDate", "HotelID", "IsActive", "IsDeleted", "RoomNumber", "RoomTypeID", "Status", "UpdateAtDate" },
+                values: new object[,]
+                {
+                    { new Guid("11e2a11d-b98f-42b7-b134-b81c8f60e6a4"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("e9b6c5db-6992-4c6b-98db-d194ed13ba4b"), true, false, 102, new Guid("8164ff91-3118-4b1a-977e-32b9731192f8"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("3ac0ad23-7dd4-4940-8692-c670d555f0e1"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("32cbd178-16b8-4341-876d-9349cb19a068"), true, false, 101, new Guid("8164ff91-3118-4b1a-977e-32b9731192f8"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("40cc1f6e-85be-4305-a484-8376e1669f5e"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("32cbd178-16b8-4341-876d-9349cb19a068"), true, false, 203, new Guid("cbcbd656-c4cc-4e31-8786-21c4f05ab844"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("51f83d4c-c5ff-4503-b347-b35c17ba91d4"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("32cbd178-16b8-4341-876d-9349cb19a068"), true, false, 202, new Guid("cbcbd656-c4cc-4e31-8786-21c4f05ab844"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("5967bf15-dcdf-41ff-928a-0df853c97938"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("e9b6c5db-6992-4c6b-98db-d194ed13ba4b"), true, false, 201, new Guid("cbcbd656-c4cc-4e31-8786-21c4f05ab844"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("ae1f4b27-540a-4cd0-8205-77cdde763c92"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("e9b6c5db-6992-4c6b-98db-d194ed13ba4b"), true, false, 301, new Guid("d7cdb2ab-446d-4645-b560-c98b4d42a5b1"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("af92d6c4-0e71-4db6-8a0b-6053d6420aa8"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("e9b6c5db-6992-4c6b-98db-d194ed13ba4b"), true, false, 101, new Guid("8164ff91-3118-4b1a-977e-32b9731192f8"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("de96b2ff-8ab2-4e58-83fa-645aa636e35b"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("e9b6c5db-6992-4c6b-98db-d194ed13ba4b"), true, false, 302, new Guid("d7cdb2ab-446d-4645-b560-c98b4d42a5b1"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("e17b7dc1-a2dd-47d4-9e06-3c507c039f9b"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("e9b6c5db-6992-4c6b-98db-d194ed13ba4b"), true, false, 103, new Guid("8164ff91-3118-4b1a-977e-32b9731192f8"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("f65f4b80-3bd9-4171-b03f-142a6df1deba"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("32cbd178-16b8-4341-876d-9349cb19a068"), true, false, 201, new Guid("cbcbd656-c4cc-4e31-8786-21c4f05ab844"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.CreateIndex(
