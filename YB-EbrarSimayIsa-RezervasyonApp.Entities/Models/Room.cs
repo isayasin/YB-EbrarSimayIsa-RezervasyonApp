@@ -10,6 +10,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.Entities.Models
     public class Room : Entity
     {
         public string? Status { get; set; }
+        public int RoomNumber { get; set; }
         public Guid RoomTypeID { get; set; }
         public RoomType? RoomType { get; set; }
         public Hotel? Hotel { get; set; }
