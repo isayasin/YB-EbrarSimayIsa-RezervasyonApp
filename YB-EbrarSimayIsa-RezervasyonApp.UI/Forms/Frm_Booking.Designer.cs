@@ -62,9 +62,11 @@
             groupBox1.Controls.Add(cmbRoomType);
             groupBox1.Controls.Add(cmbHotel);
             groupBox1.Controls.Add(label1);
-            groupBox1.Location = new Point(12, 12);
+            groupBox1.Location = new Point(17, 20);
+            groupBox1.Margin = new Padding(4, 5, 4, 5);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(764, 252);
+            groupBox1.Padding = new Padding(4, 5, 4, 5);
+            groupBox1.Size = new Size(1091, 512);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Rezervasyon işlemleri";
@@ -72,17 +74,19 @@
             // lstGuests
             // 
             lstGuests.FormattingEnabled = true;
-            lstGuests.ItemHeight = 15;
-            lstGuests.Location = new Point(451, 25);
+            lstGuests.ItemHeight = 25;
+            lstGuests.Location = new Point(616, 25);
+            lstGuests.Margin = new Padding(4, 5, 4, 5);
             lstGuests.Name = "lstGuests";
-            lstGuests.Size = new Size(264, 214);
+            lstGuests.Size = new Size(467, 379);
             lstGuests.TabIndex = 12;
             // 
             // btnGuestInfo
             // 
-            btnGuestInfo.Location = new Point(266, 91);
+            btnGuestInfo.Location = new Point(380, 152);
+            btnGuestInfo.Margin = new Padding(4, 5, 4, 5);
             btnGuestInfo.Name = "btnGuestInfo";
-            btnGuestInfo.Size = new Size(121, 23);
+            btnGuestInfo.Size = new Size(173, 38);
             btnGuestInfo.TabIndex = 11;
             btnGuestInfo.Text = "Misafir Bilgileri";
             btnGuestInfo.UseVisualStyleBackColor = true;
@@ -90,9 +94,10 @@
             // 
             // btnKaydet
             // 
-            btnKaydet.Location = new Point(171, 211);
+            btnKaydet.Location = new Point(244, 352);
+            btnKaydet.Margin = new Padding(4, 5, 4, 5);
             btnKaydet.Name = "btnKaydet";
-            btnKaydet.Size = new Size(75, 23);
+            btnKaydet.Size = new Size(107, 38);
             btnKaydet.TabIndex = 10;
             btnKaydet.Text = "Kaydet";
             btnKaydet.UseVisualStyleBackColor = true;
@@ -101,96 +106,108 @@
             // dateTimePicker2
             // 
             dateTimePicker2.Format = DateTimePickerFormat.Short;
-            dateTimePicker2.Location = new Point(125, 166);
+            dateTimePicker2.Location = new Point(179, 277);
+            dateTimePicker2.Margin = new Padding(4, 5, 4, 5);
             dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(121, 23);
+            dateTimePicker2.Size = new Size(171, 31);
             dateTimePicker2.TabIndex = 9;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(19, 172);
+            label5.Location = new Point(27, 287);
+            label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
-            label5.Size = new Size(66, 15);
+            label5.Size = new Size(97, 25);
             label5.TabIndex = 8;
             label5.Text = "Çıkış Tarihi:";
             // 
             // dateTimePicker1
             // 
             dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(125, 135);
+            dateTimePicker1.Location = new Point(179, 225);
+            dateTimePicker1.Margin = new Padding(4, 5, 4, 5);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(121, 23);
+            dateTimePicker1.Size = new Size(171, 31);
             dateTimePicker1.TabIndex = 7;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(18, 141);
+            label4.Location = new Point(26, 235);
+            label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(67, 15);
+            label4.Size = new Size(99, 25);
             label4.TabIndex = 6;
             label4.Text = "Girişi Tarihi:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(18, 93);
+            label3.Location = new Point(26, 155);
+            label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(124, 15);
+            label3.Size = new Size(185, 25);
             label3.TabIndex = 5;
             label3.Text = "Misafir Sayısını Giriniz:";
             // 
             // nmrGuest
             // 
-            nmrGuest.Location = new Point(183, 91);
+            nmrGuest.Location = new Point(261, 152);
+            nmrGuest.Margin = new Padding(4, 5, 4, 5);
             nmrGuest.Name = "nmrGuest";
-            nmrGuest.Size = new Size(63, 23);
+            nmrGuest.Size = new Size(90, 31);
             nmrGuest.TabIndex = 4;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(18, 57);
+            label2.Location = new Point(26, 95);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(93, 15);
+            label2.Size = new Size(141, 25);
             label2.TabIndex = 3;
             label2.Text = "Oda Tipi Seçiniz:";
             // 
             // cmbRoomType
             // 
             cmbRoomType.FormattingEnabled = true;
-            cmbRoomType.Location = new Point(125, 54);
+            cmbRoomType.Location = new Point(179, 90);
+            cmbRoomType.Margin = new Padding(4, 5, 4, 5);
             cmbRoomType.Name = "cmbRoomType";
-            cmbRoomType.Size = new Size(121, 23);
+            cmbRoomType.Size = new Size(171, 33);
             cmbRoomType.TabIndex = 2;
             // 
             // cmbHotel
             // 
             cmbHotel.FormattingEnabled = true;
-            cmbHotel.Location = new Point(125, 22);
+            cmbHotel.Location = new Point(179, 37);
+            cmbHotel.Margin = new Padding(4, 5, 4, 5);
             cmbHotel.Name = "cmbHotel";
-            cmbHotel.Size = new Size(121, 23);
+            cmbHotel.Size = new Size(171, 33);
             cmbHotel.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(18, 25);
+            label1.Location = new Point(26, 42);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(71, 15);
+            label1.Size = new Size(107, 25);
             label1.TabIndex = 0;
             label1.Text = "Otel Seçiniz:";
             // 
             // Frm_Booking
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(800, 534);
+            ClientSize = new Size(1143, 890);
             Controls.Add(groupBox1);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "Frm_Booking";
             Text = "Form2";
+            Load += Frm_Booking_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)nmrGuest).EndInit();

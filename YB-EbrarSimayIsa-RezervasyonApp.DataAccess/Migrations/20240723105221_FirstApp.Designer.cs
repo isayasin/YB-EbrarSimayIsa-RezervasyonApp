@@ -12,8 +12,8 @@ using YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Context;
 namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240722125805_second")]
-    partial class second
+    [Migration("20240723105221_FirstApp")]
+    partial class FirstApp
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,15 +27,15 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
 
             modelBuilder.Entity("BookingGuest", b =>
                 {
-                    b.Property<Guid>("BookingsID")
+                    b.Property<Guid>("BookingId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("GuestsID")
+                    b.Property<Guid>("GuestId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("BookingsID", "GuestsID");
+                    b.HasKey("BookingId", "GuestId");
 
-                    b.HasIndex("GuestsID");
+                    b.HasIndex("GuestId");
 
                     b.ToTable("BookingGuest");
                 });
@@ -55,7 +55,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     b.Property<DateTime>("CreateAtDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("ISActive")
+                    b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
@@ -98,7 +98,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("ISActive")
+                    b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
@@ -116,6 +116,22 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Guests");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = new Guid("ab12e098-6846-4c77-9bfa-ac7c4a8c4190"),
+                            Address = "Basaksehir",
+                            CreateAtDate = new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTime(2020, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "simay@gmail.com",
+                            FirstName = "Simay",
+                            IsActive = true,
+                            IsDeleted = false,
+                            LastName = "Seyman",
+                            Phone = "5454545454",
+                            UpdateAtDate = new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("YB_EbrarSimayIsa_RezervasyonApp.Entities.Models.Hotel", b =>
@@ -139,7 +155,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("ISActive")
+                    b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
@@ -164,13 +180,13 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            ID = new Guid("722a5201-2c86-466a-b15f-d7e0d4408fde"),
+                            ID = new Guid("557b01a7-6d00-4112-a16b-94bb1b587934"),
                             Address = "İstanbul-Basaksehir",
                             CheckinTime = new TimeOnly(14, 0, 0),
                             CheckoutTime = new TimeOnly(11, 0, 0),
                             CreateAtDate = new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "email@gmail.com",
-                            ISActive = true,
+                            IsActive = true,
                             IsDeleted = false,
                             Name = "Hilton",
                             Phone = "555 555 55 55",
@@ -194,7 +210,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     b.Property<DateTime>("CreateAtDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("ISActive")
+                    b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
@@ -228,7 +244,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     b.Property<Guid>("HotelID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("ISActive")
+                    b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
@@ -267,7 +283,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("ISActive")
+                    b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
@@ -311,7 +327,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     b.Property<Guid>("HotelID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("ISActive")
+                    b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
@@ -343,13 +359,13 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                 {
                     b.HasOne("YB_EbrarSimayIsa_RezervasyonApp.Entities.Models.Booking", null)
                         .WithMany()
-                        .HasForeignKey("BookingsID")
+                        .HasForeignKey("BookingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("YB_EbrarSimayIsa_RezervasyonApp.Entities.Models.Guest", null)
                         .WithMany()
-                        .HasForeignKey("GuestsID")
+                        .HasForeignKey("GuestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

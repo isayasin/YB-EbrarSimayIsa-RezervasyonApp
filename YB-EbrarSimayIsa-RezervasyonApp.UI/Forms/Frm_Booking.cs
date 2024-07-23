@@ -21,11 +21,33 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
         private readonly ApplicationDbContext _context;
         private readonly BookingService _bookingService;
         private readonly BookingRepository _bookingRepository;
+
+
+        private readonly GuestService _guestService;
+        private readonly GuestRepository _guestRepository;
+
+        private readonly HotelService _hotelService;
+        private readonly HotelRepository _hotelRepository;
+
+        private readonly RoomTypeService _roomTypeService;
+        private readonly RoomTypeRepository _roomTypeRepository;
         public Frm_Booking()
         {
             _context = new ApplicationDbContext();
+
             _bookingRepository = new BookingRepository(_context);
             _bookingService = new BookingService(_bookingRepository);
+
+            _guestRepository = new GuestRepository(_context);
+            _guestService = new GuestService(_guestRepository);
+
+            _hotelRepository = new HotelRepository(_context);
+            _hotelService = new HotelService(_hotelRepository);
+
+            _roomTypeRepository = new RoomTypeRepository(_context);
+            _roomTypeService = new RoomTypeService(_roomTypeRepository);
+
+
             InitializeComponent();
         }
 
@@ -75,6 +97,31 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
 
             MessageBox.Show(sb.ToString(), "Misafir Listesi", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+
         }
+
+        private void Frm_Booking_Load(object sender, EventArgs e)
+        {
+            BookingComboFill();
+        }
+
+
+
+        void BookingComboFill()
+        {
+            cmbHotel.DataSource = null;
+            cmbHotel.DataSource = _hotelService.GetAll();
+            cmbHotel.DisplayMember = "Name";
+            cmbHotel.ValueMember = "ID";
+        }
+
+        //void TownComboFill()
+        //{
+        //    cmbRoomType.DataSource = null;
+        //    cmbRoomType.DataSource = _roomTypeService.GetAllByRoomType(cmbHotel.SelectedValue.ToString());
+        //    cmbRoomType.DisplayMember = "Name";
+        //    cmbRoomType.ValueMember = "Id";
+        //}
+
     }
 }

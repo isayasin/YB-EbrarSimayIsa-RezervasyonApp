@@ -27,9 +27,9 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Context
             //optionsBuilder.UseSqlServer("Data Source = BPC12\\SQLEXPRESS; Initial Catalog = RezervasyonDb ; Integrated Security = True; Trust Server Certificate = True");
 
             //ebrar
-            //optionsBuilder.UseSqlServer("Data Source = EBRAR; Initial Catalog = RezervasyonDb ; Integrated Security = True; Trust Server Certificate = True");
+            optionsBuilder.UseSqlServer("Data Source = EBRAR; Initial Catalog = RezervasyonDb ; Integrated Security = True; Trust Server Certificate = True");
             //İsa Conn
-            optionsBuilder.UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = RezervasyonDb ; Integrated Security = True; Trust Server Certificate = True");
+            //optionsBuilder.UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = RezervasyonDb ; Integrated Security = True; Trust Server Certificate = True");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -54,7 +54,21 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Context
                 }
                 );
 
-
+            modelBuilder.Entity<RoomType>().HasData(
+             new
+             {
+                 //ID = (Guid)"FB211AD4-5C1D-44AB-85E0-0B36F166F134",
+                 ID = Guid.NewGuid(),
+                 Name = "Buyuk",
+                 Descriptiom = "Buyuk oda",
+                 PricePerNight = 2000.0m,
+                 Capacity = 4,
+                 CreateAtDate = new DateTime(2024, 6, 22),
+                 UpdateAtDate = new DateTime(2024, 7, 22),
+                 IsActive = true,
+                 IsDeleted = false,
+             }
+             );
 
 
             modelBuilder.Entity<Booking>()

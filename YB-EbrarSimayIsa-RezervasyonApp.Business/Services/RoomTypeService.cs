@@ -67,5 +67,9 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.Business.Services
                 _roomTypeRepository.Update(entity);
             }
         }
+
+
+ 
+
     }
 }

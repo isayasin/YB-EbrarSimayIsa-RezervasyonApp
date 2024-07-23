@@ -117,7 +117,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            ID = new Guid("73ad1817-5c0e-4114-ad94-f772437df29b"),
+                            ID = new Guid("ab12e098-6846-4c77-9bfa-ac7c4a8c4190"),
                             Address = "Basaksehir",
                             CreateAtDate = new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfBirth = new DateTime(2020, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -177,7 +177,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            ID = new Guid("eaa0f43e-f027-45df-b417-b2493c5b8870"),
+                            ID = new Guid("557b01a7-6d00-4112-a16b-94bb1b587934"),
                             Address = "İstanbul-Basaksehir",
                             CheckinTime = new TimeOnly(14, 0, 0),
                             CheckoutTime = new TimeOnly(11, 0, 0),
