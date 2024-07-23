@@ -219,11 +219,24 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
             RoomNumberFill();
         }
 
-        private void nmrGuest_ValueChanged(object sender, EventArgs e)
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
-
+            TotalPriceCalculate();
         }
 
-        
+        private void TotalPriceCalculate()
+        {
+            if (cmbHotel.SelectedIndex != -1 && cmbRoomType.SelectedIndex != -1 && cmbRoomNumber.SelectedIndex != -1 && nmrGuest.Value > 0 && dateTimePicker1.Value != null)
+            {
+                var roomType = _roomTypeService.GetById((Guid)cmbRoomType.SelectedValue);
+                decimal pricePerNight = roomType.PricePerNight;
+                decimal totalPrice;
+                int daysOfReservation;
+                daysOfReservation = dateTimePicker2.Value.Day - dateTimePicker1.Value.Day;
+                totalPrice = pricePerNight * nmrGuest.Value * daysOfReservation;
+
+                lblAmount.Text = $"{totalPrice.ToString()} TL";
+            }
+        }
     }
 }

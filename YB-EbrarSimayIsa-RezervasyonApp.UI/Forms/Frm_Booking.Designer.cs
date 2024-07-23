@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            label9 = new Label();
             cmbPaymentMethod = new ComboBox();
             label8 = new Label();
             lblAmount = new Label();
@@ -53,7 +54,6 @@
             btnDelete = new Button();
             btnUpdate = new Button();
             txtRezervationsSearch = new TextBox();
-            label9 = new Label();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nmrGuest).BeginInit();
             groupBox2.SuspendLayout();
@@ -89,6 +89,15 @@
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Rezervasyon işlemleri";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(530, 23);
+            label9.Name = "label9";
+            label9.Size = new Size(78, 15);
+            label9.TabIndex = 17;
+            label9.Text = "Misafir Listesi";
             // 
             // cmbPaymentMethod
             // 
@@ -161,6 +170,7 @@
             dateTimePicker2.Name = "dateTimePicker2";
             dateTimePicker2.Size = new Size(121, 23);
             dateTimePicker2.TabIndex = 9;
+            dateTimePicker2.ValueChanged += dateTimePicker2_ValueChanged;
             // 
             // label5
             // 
@@ -203,7 +213,6 @@
             nmrGuest.Name = "nmrGuest";
             nmrGuest.Size = new Size(63, 23);
             nmrGuest.TabIndex = 4;
-            nmrGuest.ValueChanged += nmrGuest_ValueChanged;
             // 
             // label6
             // 
@@ -301,15 +310,6 @@
             txtRezervationsSearch.Name = "txtRezervationsSearch";
             txtRezervationsSearch.Size = new Size(178, 23);
             txtRezervationsSearch.TabIndex = 4;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(530, 23);
-            label9.Name = "label9";
-            label9.Size = new Size(78, 15);
-            label9.TabIndex = 17;
-            label9.Text = "Misafir Listesi";
             // 
             // Frm_Booking
             // 
