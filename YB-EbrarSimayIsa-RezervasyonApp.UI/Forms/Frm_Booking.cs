@@ -224,6 +224,11 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
 
         }
 
-        
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            dateTimePicker1.MinDate = DateTime.Today;
+            dateTimePicker2.MinDate = dateTimePicker1.Value.AddDays(1);
+
+        }
     }
 }
