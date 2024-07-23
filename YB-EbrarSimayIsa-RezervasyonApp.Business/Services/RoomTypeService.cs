@@ -5,13 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using YB_EbrarSimayIsa_RezervasyonApp.Business.Abstractions;
+using YB_EbrarSimayIsa_RezervasyonApp.Business.IService;
 using YB_EbrarSimayIsa_RezervasyonApp.Business.Validators;
 using YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Repositories;
 using YB_EbrarSimayIsa_RezervasyonApp.Entities.Models;
 
 namespace YB_EbrarSimayIsa_RezervasyonApp.Business.Services
 {
-    public class RoomTypeService : IService<RoomType>
+    public class RoomTypeService : IRoomTypeService
     {
 
 
@@ -49,14 +50,34 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.Business.Services
             _roomTypeRepository.Delete(id);
         }
 
+        public void Delete(RoomType entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<RoomType>? GetAll()
         {
             return _roomTypeRepository.GetAll();
         }
 
+        public List<RoomType> GetAllByHotel(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IQueryable<RoomType> GetAllQueryable()
+        {
+            throw new NotImplementedException();
+        }
+
         public RoomType? GetById(Guid id)
         {
             return _roomTypeRepository.GetByID(id);
+        }
+
+        public RoomType GetById(string id)
+        {
+            throw new NotImplementedException();
         }
 
         public void Update(RoomType entity)
@@ -66,6 +87,11 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.Business.Services
             {
                 _roomTypeRepository.Update(entity);
             }
+        }
+
+        List<RoomType> IGenericService<RoomType>.GetAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

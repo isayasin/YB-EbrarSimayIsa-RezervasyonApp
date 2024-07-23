@@ -214,7 +214,6 @@
             Controls.Add(groupBox1);
             Name = "Frm_Booking";
             Text = "Form2";
-            Load += Frm_Booking_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)nmrGuest).EndInit();

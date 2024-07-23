@@ -24,15 +24,15 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
 
             modelBuilder.Entity("BookingGuest", b =>
                 {
-                    b.Property<Guid>("BookingsID")
+                    b.Property<Guid>("BookingId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("GuestsID")
+                    b.Property<Guid>("GuestId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("BookingsID", "GuestsID");
+                    b.HasKey("BookingId", "GuestId");
 
-                    b.HasIndex("GuestsID");
+                    b.HasIndex("GuestId");
 
                     b.ToTable("BookingGuest");
                 });
@@ -113,6 +113,22 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Guests");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = new Guid("ab12e098-6846-4c77-9bfa-ac7c4a8c4190"),
+                            Address = "Basaksehir",
+                            CreateAtDate = new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTime(2020, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "simay@gmail.com",
+                            FirstName = "Simay",
+                            IsActive = true,
+                            IsDeleted = false,
+                            LastName = "Seyman",
+                            Phone = "5454545454",
+                            UpdateAtDate = new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("YB_EbrarSimayIsa_RezervasyonApp.Entities.Models.Hotel", b =>
@@ -161,7 +177,11 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     b.HasData(
                         new
                         {
+<<<<<<< HEAD
                             ID = new Guid("e9b6c5db-6992-4c6b-98db-d194ed13ba4b"),
+=======
+                            ID = new Guid("557b01a7-6d00-4112-a16b-94bb1b587934"),
+>>>>>>> 952f533338fe459020c416e7874c7864055e15ad
                             Address = "İstanbul-Basaksehir",
                             CheckinTime = new TimeOnly(14, 0, 0),
                             CheckoutTime = new TimeOnly(11, 0, 0),
@@ -518,13 +538,13 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                 {
                     b.HasOne("YB_EbrarSimayIsa_RezervasyonApp.Entities.Models.Booking", null)
                         .WithMany()
-                        .HasForeignKey("BookingsID")
+                        .HasForeignKey("BookingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("YB_EbrarSimayIsa_RezervasyonApp.Entities.Models.Guest", null)
                         .WithMany()
-                        .HasForeignKey("GuestsID")
+                        .HasForeignKey("GuestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

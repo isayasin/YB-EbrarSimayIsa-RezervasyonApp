@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -34,6 +35,21 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
 
         public Frm_Booking()
         {
+            _context = new ApplicationDbContext();
+
+            _bookingRepository = new BookingRepository(_context);
+            _bookingService = new BookingService(_bookingRepository);
+
+            _guestRepository = new GuestRepository(_context);
+            _guestService = new GuestService(_guestRepository);
+
+            _hotelRepository = new HotelRepository(_context);
+            _hotelService = new HotelService(_hotelRepository);
+
+            _roomTypeRepository = new RoomTypeRepository(_context);
+            _roomTypeService = new RoomTypeService(_roomTypeRepository);
+
+
             InitializeComponent();
             _context = new ApplicationDbContext();
             _bookingRepository = new BookingRepository(_context);
