@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -245,7 +246,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
         {
             TotalPriceCalculate();
         }
-        
+
         private void TotalPriceCalculate()
         {
             if (cmbHotel.SelectedIndex != -1 && cmbRoomType.SelectedIndex != -1 && cmbRoomNumber.SelectedIndex != -1 && nmrGuest.Value > 0 && dateTimePicker1.Value != null)
@@ -296,6 +297,40 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
         {
             dgwRezervations.DataSource = _guestService.GetAll();
 
+        }
+
+        private Booking _bookings;
+
+        private void UpdateCmbRoomNumberFill()
+        {
+
+            //cmbRoomNumber.DataSource = null;
+            //var rooms = _roomService.GetRoomsByHotelAndRoomType(hotelId, roomTypeId);
+            //cmbRoomNumber.DataSource = rooms.ToList();
+            //cmbRoomNumber.DisplayMember = "RoomNumber";
+            //cmbRoomNumber.ValueMember = "ID";
+            //cmbRoomNumber.SelectedIndex = -1;
+
+            cmbRoomNumber.DataSource = null;
+            cmbRoomNumber.DataSource = _roomService.GetAll();
+            cmbRoomNumber.DisplayMember = "RoomNumber";
+            cmbRoomNumber.ValueMember = "ID";
+            cmbRoomNumber.SelectedValue = _roomService.GetById(_bookings.RoomID);
+            //cmbRoomNumber.SelectedIndex = -1;
+        }
+
+        private void dgwRezervations_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            _bookings = _bookingService.GetById((Guid)dgwRezervations.CurrentRow.Cells["Id"].Value);
+            UpdateCmbRoomNumberFill();
+            //txtUpdateDistrict.Text = _bookings.District.ToString();
+            //txtUpdateStreet.Text = _bookings.Street.ToString();
+            //txtUpdateBuildNumber.Text = _bookings.BuildNumber.ToString();
+            //txtUpdateFloor.Text = _bookings.FloorNumber.ToString();
+            //txtUpdateApartmentNumber.Text = _bookings.ApartmentNumber.ToString();
+            //txtUpdatePostalCode.Text = _bookings.PostalCode.ToString();
+            //cbxIsActive.Checked = _bookings.IsActive;
+            //cbxIsDeleted.Checked = _bookings.IsDeleted;
         }
     }
 
