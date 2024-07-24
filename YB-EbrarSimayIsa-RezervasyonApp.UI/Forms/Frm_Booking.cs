@@ -286,26 +286,35 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
                 var data = from bookingGuest in _context.BookingGuests
                            join booking in _context.Bookings on bookingGuest.BookingID equals booking.ID
                            join guest in _context.Guests on bookingGuest.GuestID equals guest.ID
+                           join roomType in _context.RoomTypes on booking.Room.RoomType.ID equals roomType.ID
                            select new
                            {
                                BookingID = booking.ID,
-                               GuestFirstName = guest.FirstName,
+                               GuestID = guest.ID,
+
                                CheckInDate = booking.CheckinDate,
                                CheckOutDate = booking.CheckoutDate,
-                               TotalPrice = booking.TotalPrice,
+                               Total_Price = booking.TotalPrice,
+                               
+
+                               GuestFirstName = guest.FirstName,
+                               GuestLastName = guest.LastName,
+                               GuestAddress = guest.Address,
+                               GuestPhone = guest.Phone,
+                               GuestEmail = guest.Email,
+                               GuestCreateDate = guest.CreateAtDate,
+                               
+                               RooomTypeName = roomType.Name,
+                               RoomTypeDescription = roomType.Description,
+                               RoomTypePricePerNight = roomType.PricePerNight,
+                               RoomTypeCapacity = roomType.Capacity
+                            
 
                                //BookingDetails = booking.Details
                            };
 
                 dgwRezervations.DataSource = data.Where(p => p.GuestFirstName.ToLower().Contains(searchText)).ToList();
 
-                //var pList = _guestService.GetAll().Where(p => p.FirstName.ToLower().Contains(searchText));
-
-
-
-                //lstGuests.ValueMember = "ID";
-                //lstGuests.DisplayMember = "FirstName";
-                //dgwRezervations.DataSource = pList.ToList();
             }
             else if (searchText.Length == 0)
             {
@@ -313,20 +322,6 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
             }
         }
 
-
-        private List<Booking> GetBookingsForGuest(Guid guestID)
-        {
-            // Burada GuestID ile ilişkilendirilmiş Booking bilgilerini döndürebilirsiniz.
-            // Bu metodun gerçek uygulamada GuestService içinde veya ayrı bir BookingService sınıfında olması daha uygun olabilir.
-            // Örneğin, _bookingService.GetBookingsForGuest(guestID) gibi bir metot kullanılabilir.
-
-            // Örnek olarak hardcoded bir Booking listesi döndürüyorum:
-            return new List<Booking>
-    {
-        new Booking { ID = guestID,  },
-        new Booking { ID = guestID  }
-    };
-        }
 
         private void GetReservationsByTextSearch()
         {
