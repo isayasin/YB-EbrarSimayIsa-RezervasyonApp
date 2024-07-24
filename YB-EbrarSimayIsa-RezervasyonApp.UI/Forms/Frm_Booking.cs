@@ -33,6 +33,13 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
         private readonly RoomTypeService _roomTypeService;
         private readonly RoomTypeRepository _roomTypeRepository;
 
+        private readonly BookingGuestService _bookingGuestService;
+        private readonly BookingGuestRepository _bookingGuestRepository;
+
+
+        private readonly PaymentService _paymentService;
+        private readonly PaymentRepository _paymentRepository;
+
         public Frm_Booking()
         {
             InitializeComponent();
@@ -51,6 +58,14 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
 
             _roomTypeRepository = new RoomTypeRepository(_context);
             _roomTypeService = new RoomTypeService(_roomTypeRepository, _roomRepository);
+
+            _bookingGuestRepository = new BookingGuestRepository(_context);
+            _bookingGuestService = new BookingGuestService(_bookingGuestRepository);
+
+
+            _paymentRepository = new PaymentRepository(_context);
+            _paymentService = new PaymentService(_paymentRepository);
+
         }
 
         private List<Guest> guests = new List<Guest>();
@@ -66,6 +81,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
                     {
                         Guest guest = new Guest
                         {
+                            //ID = new Guid(),
                             FirstName = guestForm.GuestName,
                             LastName = guestForm.GuestSurname,
                             Email = guestForm.GuestEmail,
@@ -83,56 +99,61 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
             }
         }
 
+
+        //List<Guest> guestList = new List<Guest>();
+       // List<Guest> addedList = new List<Guest>();
+
         private void btnKaydet_Click(object sender, EventArgs e)
         {
-            using (var transaction = _context.Database.BeginTransaction())
-            {
-                try
-                {
-                    Booking b = new Booking()
-                    {
-                        CheckinDate = dateTimePicker1.Value,
-                        CheckoutDate = dateTimePicker2.Value,
-                    };
-                    _bookingService.Add(b);
+            /*
+            //using (var transaction = _context.Database.BeginTransaction())
+            //{
+            //    try
+            //    {
+            //        Booking b = new Booking()
+            //        {
+            //            CheckinDate = dateTimePicker1.Value,
+            //            CheckoutDate = dateTimePicker2.Value,
+            //        };
+            //        _bookingService.Add(b);
 
-                    Room r = new Room()
-                    {
-                        RoomTypeID = (Guid)cmbRoomType.SelectedValue,
-                    };
+            //        Room r = new Room()
+            //        {
+            //            RoomTypeID = (Guid)cmbRoomType.SelectedValue,
+            //        };
 
-                    _roomService.Add(r);
+            //        _roomService.Add(r);
 
-                    Hotel hotel = new Hotel()
-                    {
-                        ID = (Guid)cmbHotel.SelectedValue,
-                    };
+            //        Hotel hotel = new Hotel()
+            //        {
+            //            ID = (Guid)cmbHotel.SelectedValue,
+            //        };
 
-                    _hotelService.Add(hotel);
+            //        _hotelService.Add(hotel);
 
-                    guests.ForEach(x => _guestService.Add(
-                        new Guest()
-                        {
-                            FirstName = x.FirstName,
-                            LastName = x.LastName,
-                            Email = x.Email,
-                            Phone = x.Phone,
-                            Address = x.Address,
-                            DateOfBirth = x.DateOfBirth,
-                        }
-                        ));
+            //        guests.ForEach(x => _guestService.Add(
+            //            new Guest()
+            //            {
+            //                FirstName = x.FirstName,
+            //                LastName = x.LastName,
+            //                Email = x.Email,
+            //                Phone = x.Phone,
+            //                Address = x.Address,
+            //                DateOfBirth = x.DateOfBirth,
+            //            }
+            //            ));
 
-                    transaction.Commit();
-                    //GetAllRezervations();
-                    MessageBox.Show("Rezervasyon başarı ile kayıt edildi.");
-                }
-                catch (Exception ex)
-                {
-                    transaction.Rollback();
-                    MessageBox.Show(ex.Message);
-                }
-            }
-
+            //        transaction.Commit();
+            //        //GetAllRezervations();
+            //        MessageBox.Show("Rezervasyon başarı ile kayıt edildi.");
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        transaction.Rollback();
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //}
+            */
 
             /*StringBuilder sb = new StringBuilder();
             foreach (Guest guest in guests)
@@ -148,16 +169,84 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
 
             MessageBox.Show(sb.ToString(), "Misafir Listesi", MessageBoxButtons.OK, MessageBoxIcon.Information);*/
 
+
+
+
+            Booking booking = new Booking()
+            {
+                ID = Guid.NewGuid(),
+                CheckinDate = dateTimePicker1.Value,
+                CheckoutDate = dateTimePicker2.Value,
+                RoomID = Guid.Parse(cmbRoomNumber.SelectedValue.ToString()),
+                TotalPrice = totalPrice,
+            };
+
+            Payment payment = new Payment()
+            {
+                BookingID = booking.ID,
+                Amount = booking.TotalPrice,
+                PaymentDate = DateTime.Now,
+                PaymentMethod = payments[secilen],
+            };
+
+
+
+            //guests.ForEach(x => _guestService.Add(
+            //            new Guest()
+            //            {
+            //                FirstName = x.FirstName,
+            //                LastName = x.LastName,
+            //                Email = x.Email,
+            //                Phone = x.Phone,
+            //                Address = x.Address,
+            //                DateOfBirth = x.DateOfBirth,
+            //            }
+            //            ));
+
+            //db guest ekleniyor
+            foreach (var item in guests)
+            {
+                _guestService.Add(item);
+            }
+
+            //db booking ekleniyor
+            _bookingService.Add(booking);
+
+
+            foreach (var item in guests)
+            {
+                BookingGuest bookingGuest = new BookingGuest()
+                {
+                    BookingID = booking.ID,
+                    GuestID = item.ID,
+                };
+                //db bookingGuest ekleniyor
+                _bookingGuestService.Add(bookingGuest);
+            }
+            //db payment ekleniyor
+            _paymentService.Add(payment);
+            DataGridListFill();
+
+            MessageBox.Show("Rezervasyon Oluşturuldu");
         }
 
-        private void GetAllRezervations()
+
+
+
+
+
+
+
+        private void DataGridListFill()
         {
-            throw new NotImplementedException();
+            dgwRezervations.ClearSelection();
+            dgwRezervations.DataSource = null;
+            dgwRezervations.DataSource = _bookingService.GetAll();
         }
 
         private void Frm_Booking_Load(object sender, EventArgs e)
         {
-
+            DataGridListFill();
             PaymentsComboFill();
 
             HotelComboFill();
@@ -174,10 +263,10 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
             // RoomTypes içeriğini MessageBox ile göster
             MessageBox.Show(sb.ToString(), "Room Types");*/
         }
-
+        List<String> payments = new List<string>();
         private void PaymentsComboFill()
         {
-            List<String> payments = new List<string>();
+
             payments.Add("Nakit");
             payments.Add("Kredi Karti");
             payments.Add("Banka Karti");
@@ -239,14 +328,14 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
         {
             TotalPriceCalculate();
         }
-
+        decimal totalPrice;
         private void TotalPriceCalculate()
         {
             if (cmbHotel.SelectedIndex != -1 && cmbRoomType.SelectedIndex != -1 && cmbRoomNumber.SelectedIndex != -1 && nmrGuest.Value > 0 && dateTimePicker1.Value != null)
             {
                 var roomType = _roomTypeService.GetById((Guid)cmbRoomType.SelectedValue);
                 decimal pricePerNight = roomType.PricePerNight;
-                decimal totalPrice;
+
                 int daysOfReservation;
                 daysOfReservation = dateTimePicker2.Value.Day - dateTimePicker1.Value.Day;
                 totalPrice = pricePerNight * nmrGuest.Value * daysOfReservation;
@@ -262,11 +351,11 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
         }
 
 
-
+        int secilen;
         private void cmbPaymentMethod_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var secilen = cmbPaymentMethod.SelectedIndex;
-            MessageBox.Show($"Secilen odeme turu: { secilen.ToString()}");
+            secilen = cmbPaymentMethod.SelectedIndex;
+            //MessageBox.Show($"Secilen odeme turu: { secilen.ToString()}");
         }
 
 

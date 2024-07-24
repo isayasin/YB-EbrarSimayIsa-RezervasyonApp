@@ -179,7 +179,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            ID = new Guid("e7da1881-fdfd-4156-8dd9-d77d23974be4"),
+                            ID = new Guid("a087b118-8876-425c-b82e-475bd555dabf"),
                             Address = "İstanbul-Basaksehir",
                             CheckinTime = new TimeOnly(14, 0, 0),
                             CheckoutTime = new TimeOnly(11, 0, 0),
@@ -194,7 +194,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                         },
                         new
                         {
-                            ID = new Guid("4bf3cf5e-150e-4ad1-b589-b1273e7b240f"),
+                            ID = new Guid("56c450b1-4862-42cd-a806-df6c802a4d72"),
                             Address = "İstanbul-Kadıköy",
                             CheckinTime = new TimeOnly(13, 0, 0),
                             CheckoutTime = new TimeOnly(10, 0, 0),
@@ -287,121 +287,121 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            ID = new Guid("c25f6a86-a642-4d6b-aadb-e3dbb70b0953"),
+                            ID = new Guid("d2c74e02-bced-4fc3-8975-6ae4d3994f4e"),
                             CreateAtDate = new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            HotelID = new Guid("e7da1881-fdfd-4156-8dd9-d77d23974be4"),
+                            HotelID = new Guid("a087b118-8876-425c-b82e-475bd555dabf"),
                             IsActive = true,
                             IsDeleted = false,
                             RoomNumber = 101,
-                            RoomTypeID = new Guid("77a2ad8a-3db2-4b8c-b5e2-05befa1974fc"),
+                            RoomTypeID = new Guid("2059c1bc-f583-407e-801c-6d1cf0cb15a4"),
                             Status = "Müsait",
                             UpdateAtDate = new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            ID = new Guid("13847332-2908-434e-a9bb-e01d859996dc"),
+                            ID = new Guid("158d3d8f-ed74-4ac6-87f8-90d6572db49d"),
                             CreateAtDate = new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            HotelID = new Guid("e7da1881-fdfd-4156-8dd9-d77d23974be4"),
+                            HotelID = new Guid("a087b118-8876-425c-b82e-475bd555dabf"),
                             IsActive = true,
                             IsDeleted = false,
                             RoomNumber = 102,
-                            RoomTypeID = new Guid("77a2ad8a-3db2-4b8c-b5e2-05befa1974fc"),
+                            RoomTypeID = new Guid("2059c1bc-f583-407e-801c-6d1cf0cb15a4"),
                             Status = "Müsait",
                             UpdateAtDate = new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            ID = new Guid("9ec90b5b-8cb2-4276-8414-15bd6d847307"),
+                            ID = new Guid("67689404-4b18-4e60-bed8-a98dc3ad0da6"),
                             CreateAtDate = new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            HotelID = new Guid("e7da1881-fdfd-4156-8dd9-d77d23974be4"),
+                            HotelID = new Guid("a087b118-8876-425c-b82e-475bd555dabf"),
                             IsActive = true,
                             IsDeleted = false,
                             RoomNumber = 103,
-                            RoomTypeID = new Guid("77a2ad8a-3db2-4b8c-b5e2-05befa1974fc"),
+                            RoomTypeID = new Guid("2059c1bc-f583-407e-801c-6d1cf0cb15a4"),
                             Status = "Müsait",
                             UpdateAtDate = new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            ID = new Guid("7ac48c31-b076-4f51-a13b-6dea669f74e0"),
+                            ID = new Guid("dd7e9f9b-9a6e-45fb-a293-e3d3b8efc76c"),
                             CreateAtDate = new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            HotelID = new Guid("e7da1881-fdfd-4156-8dd9-d77d23974be4"),
+                            HotelID = new Guid("a087b118-8876-425c-b82e-475bd555dabf"),
                             IsActive = true,
                             IsDeleted = false,
                             RoomNumber = 201,
-                            RoomTypeID = new Guid("9125fca3-e6b9-4073-9130-1340984b01a3"),
+                            RoomTypeID = new Guid("cd503069-f72c-47e0-9145-f8b9befd1dda"),
                             Status = "Müsait",
                             UpdateAtDate = new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            ID = new Guid("a8f81138-9136-47c4-8d52-e590e109451f"),
+                            ID = new Guid("ac9de000-1722-464d-9b2f-a68a974c003c"),
                             CreateAtDate = new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            HotelID = new Guid("e7da1881-fdfd-4156-8dd9-d77d23974be4"),
+                            HotelID = new Guid("a087b118-8876-425c-b82e-475bd555dabf"),
                             IsActive = true,
                             IsDeleted = false,
                             RoomNumber = 301,
-                            RoomTypeID = new Guid("cb2a20f5-f11e-4c5c-99a8-271a63a8256d"),
+                            RoomTypeID = new Guid("89811bb8-a6d9-425e-bac6-774f88c51d1e"),
                             Status = "Müsait",
                             UpdateAtDate = new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            ID = new Guid("83b3f4d0-6db0-4581-832f-b6c4bc7f6acf"),
+                            ID = new Guid("7481b6fc-c2dd-483e-9109-91e6845a5fd0"),
                             CreateAtDate = new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            HotelID = new Guid("e7da1881-fdfd-4156-8dd9-d77d23974be4"),
+                            HotelID = new Guid("a087b118-8876-425c-b82e-475bd555dabf"),
                             IsActive = true,
                             IsDeleted = false,
                             RoomNumber = 302,
-                            RoomTypeID = new Guid("cb2a20f5-f11e-4c5c-99a8-271a63a8256d"),
+                            RoomTypeID = new Guid("89811bb8-a6d9-425e-bac6-774f88c51d1e"),
                             Status = "Müsait",
                             UpdateAtDate = new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            ID = new Guid("fbacd175-3544-40f4-b517-cad9e5efde96"),
+                            ID = new Guid("4242f3dc-a1c9-4ad4-a436-46aa6dd734bb"),
                             CreateAtDate = new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            HotelID = new Guid("4bf3cf5e-150e-4ad1-b589-b1273e7b240f"),
+                            HotelID = new Guid("56c450b1-4862-42cd-a806-df6c802a4d72"),
                             IsActive = true,
                             IsDeleted = false,
                             RoomNumber = 101,
-                            RoomTypeID = new Guid("77a2ad8a-3db2-4b8c-b5e2-05befa1974fc"),
+                            RoomTypeID = new Guid("2059c1bc-f583-407e-801c-6d1cf0cb15a4"),
                             Status = "Müsait",
                             UpdateAtDate = new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            ID = new Guid("8794468e-5feb-446d-a692-a767c3559b51"),
+                            ID = new Guid("a0d7d14f-076a-4e82-bcc8-871dff6c1600"),
                             CreateAtDate = new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            HotelID = new Guid("4bf3cf5e-150e-4ad1-b589-b1273e7b240f"),
+                            HotelID = new Guid("56c450b1-4862-42cd-a806-df6c802a4d72"),
                             IsActive = true,
                             IsDeleted = false,
                             RoomNumber = 201,
-                            RoomTypeID = new Guid("9125fca3-e6b9-4073-9130-1340984b01a3"),
+                            RoomTypeID = new Guid("cd503069-f72c-47e0-9145-f8b9befd1dda"),
                             Status = "Müsait",
                             UpdateAtDate = new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            ID = new Guid("c9e86204-1c21-462a-a07d-5aceabee1fd5"),
+                            ID = new Guid("02a1f191-3fa4-4d39-b87e-b6194e3c5462"),
                             CreateAtDate = new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            HotelID = new Guid("4bf3cf5e-150e-4ad1-b589-b1273e7b240f"),
+                            HotelID = new Guid("56c450b1-4862-42cd-a806-df6c802a4d72"),
                             IsActive = true,
                             IsDeleted = false,
                             RoomNumber = 202,
-                            RoomTypeID = new Guid("9125fca3-e6b9-4073-9130-1340984b01a3"),
+                            RoomTypeID = new Guid("cd503069-f72c-47e0-9145-f8b9befd1dda"),
                             Status = "Müsait",
                             UpdateAtDate = new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            ID = new Guid("ceee4b82-724b-43f5-8f6b-fa794dd8e861"),
+                            ID = new Guid("2754945b-6110-4f14-a4f0-909fe7767658"),
                             CreateAtDate = new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            HotelID = new Guid("4bf3cf5e-150e-4ad1-b589-b1273e7b240f"),
+                            HotelID = new Guid("56c450b1-4862-42cd-a806-df6c802a4d72"),
                             IsActive = true,
                             IsDeleted = false,
                             RoomNumber = 203,
-                            RoomTypeID = new Guid("9125fca3-e6b9-4073-9130-1340984b01a3"),
+                            RoomTypeID = new Guid("cd503069-f72c-47e0-9145-f8b9befd1dda"),
                             Status = "Müsait",
                             UpdateAtDate = new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
@@ -444,7 +444,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            ID = new Guid("77a2ad8a-3db2-4b8c-b5e2-05befa1974fc"),
+                            ID = new Guid("2059c1bc-f583-407e-801c-6d1cf0cb15a4"),
                             Capacity = 1,
                             CreateAtDate = new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Sokak Manzaralı",
@@ -456,7 +456,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                         },
                         new
                         {
-                            ID = new Guid("9125fca3-e6b9-4073-9130-1340984b01a3"),
+                            ID = new Guid("cd503069-f72c-47e0-9145-f8b9befd1dda"),
                             Capacity = 2,
                             CreateAtDate = new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Orman Manzaralı",
@@ -468,7 +468,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                         },
                         new
                         {
-                            ID = new Guid("cb2a20f5-f11e-4c5c-99a8-271a63a8256d"),
+                            ID = new Guid("89811bb8-a6d9-425e-bac6-774f88c51d1e"),
                             Capacity = 4,
                             CreateAtDate = new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Deniz Manzaralı",

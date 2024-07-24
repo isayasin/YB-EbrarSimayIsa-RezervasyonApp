@@ -171,6 +171,7 @@
             Controls.Add(label1);
             Name = "Frm_GuestDetails";
             Text = "Frm_GuestDetails";
+            Load += Frm_GuestDetails_Load;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -38,5 +38,10 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+
+        private void Frm_GuestDetails_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
