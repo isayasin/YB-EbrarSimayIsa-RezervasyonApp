@@ -314,6 +314,7 @@
             txtRezervationsSearch.Name = "txtRezervationsSearch";
             txtRezervationsSearch.Size = new Size(178, 23);
             txtRezervationsSearch.TabIndex = 4;
+            txtRezervationsSearch.TextChanged += txtRezervationsSearch_TextChanged;
             // 
             // Frm_Booking
             // 
