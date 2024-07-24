@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -289,13 +290,13 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
                            join roomType in _context.RoomTypes on booking.Room.RoomType.ID equals roomType.ID
                            select new
                            {
-                               BookingID = booking.ID,
+                               ID = booking.ID,
                                GuestID = guest.ID,
 
                                CheckInDate = booking.CheckinDate,
                                CheckOutDate = booking.CheckoutDate,
                                Total_Price = booking.TotalPrice,
-                               
+
 
                                GuestFirstName = guest.FirstName,
                                GuestLastName = guest.LastName,
@@ -303,12 +304,12 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
                                GuestPhone = guest.Phone,
                                GuestEmail = guest.Email,
                                GuestCreateDate = guest.CreateAtDate,
-                               
+
                                RooomTypeName = roomType.Name,
                                RoomTypeDescription = roomType.Description,
                                RoomTypePricePerNight = roomType.PricePerNight,
                                RoomTypeCapacity = roomType.Capacity
-                            
+
 
                                //BookingDetails = booking.Details
                            };
@@ -361,6 +362,47 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
             //txtUpdatePostalCode.Text = _bookings.PostalCode.ToString();
             //cbxIsActive.Checked = _bookings.IsActive;
             //cbxIsDeleted.Checked = _bookings.IsDeleted;
+        }
+
+       
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (dgwRezervations.SelectedRows.Count > 0)
+            {
+                
+                var booking =_bookingService.GetById((Guid)dgwRezervations.CurrentRow.Cells["ID"].Value);
+
+                if (booking != null)
+                {
+                    // Guest nesnesi başarıyla alındı, silme işlemini yapabiliriz
+                    using (_context)
+                    {
+                        var bookingToDelete = _context.Bookings.Find(booking.ID);
+                        if (bookingToDelete != null)
+                        {
+                            booking.IsDeleted = true;
+                            booking.IsActive = false;
+                            _bookingService.Delete(bookingToDelete.ID);
+                            MessageBox.Show("Misafir başarıyla silindi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // DataGridView'i güncelleyebiliriz
+                            dgwRezervations.DataSource = _context.Bookings.ToList();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Seçili misafir bulunamadı.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Seçili satırda geçerli bir misafir bulunamadı.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Lütfen önce bir misafir seçin.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 
