@@ -10,6 +10,6 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.Entities.Models
         public string? Address { get; set; }
         public string? Phone { get; set; }
         public string? Email { get; set; }
-        public virtual ICollection<Booking>? Bookings { get; set; }
+        public ICollection<BookingGuest>? BookingGuests { get; set; }
     }
 }
