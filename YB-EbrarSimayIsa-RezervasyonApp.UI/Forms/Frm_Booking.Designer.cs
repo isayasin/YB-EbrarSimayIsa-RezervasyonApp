@@ -303,6 +303,7 @@
             btnDelete.TabIndex = 3;
             btnDelete.Text = "Rezervasyon Sil";
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnUpdate
             // 
