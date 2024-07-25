@@ -277,55 +277,59 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
         }
 
         private void txtRezervationsSearch_TextChanged(object sender, EventArgs e)
+       {
+
+            UpdateDataGridAndSearch();
+
+        }
+
+        private void UpdateDataGridAndSearch()
         {
+
 
             string searchText = txtRezervationsSearch.Text.ToLower();
 
             if (!string.IsNullOrEmpty(searchText) && searchText.Length >= 1)
             {
-
                 var data = from bookingGuest in _context.BookingGuests
                            join booking in _context.Bookings on bookingGuest.BookingID equals booking.ID
                            join guest in _context.Guests on bookingGuest.GuestID equals guest.ID
                            join roomType in _context.RoomTypes on booking.Room.RoomType.ID equals roomType.ID
+                           where guest.FirstName.ToLower().Contains(searchText)
                            select new
                            {
                                ID = booking.ID,
                                GuestID = guest.ID,
-
                                CheckInDate = booking.CheckinDate,
                                CheckOutDate = booking.CheckoutDate,
                                Total_Price = booking.TotalPrice,
-
-
                                GuestFirstName = guest.FirstName,
                                GuestLastName = guest.LastName,
                                GuestAddress = guest.Address,
                                GuestPhone = guest.Phone,
                                GuestEmail = guest.Email,
                                GuestCreateDate = guest.CreateAtDate,
-
                                RooomTypeName = roomType.Name,
                                RoomTypeDescription = roomType.Description,
                                RoomTypePricePerNight = roomType.PricePerNight,
                                RoomTypeCapacity = roomType.Capacity
-
-
-                               //BookingDetails = booking.Details
                            };
 
-                dgwRezervations.DataSource = data.Where(p => p.GuestFirstName.ToLower().Contains(searchText)).ToList();
-
+                dgwRezervations.DataSource = data.ToList();
             }
-            else if (searchText.Length == 0)
+            else
             {
-                GetReservationsByTextSearch();
+                dgwRezervations.DataSource = _bookingService.GetAll();
             }
-        }
 
+
+
+
+        }
 
         private void GetReservationsByTextSearch()
         {
+
             dgwRezervations.DataSource = _bookingService.GetAll();
 
         }
@@ -364,46 +368,54 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
             //cbxIsDeleted.Checked = _bookings.IsDeleted;
         }
 
-       
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
+
+
             if (dgwRezervations.SelectedRows.Count > 0)
             {
+
                 
-                var booking =_bookingService.GetById((Guid)dgwRezervations.CurrentRow.Cells["ID"].Value);
 
-                if (booking != null)
+                // Seçili satırdan ID'yi al
+                var selectedRow = dgwRezervations.SelectedRows[0];
+                var bookingId = (Guid)selectedRow.Cells["ID"].Value;
+
+
+                try
                 {
-                    // Guest nesnesi başarıyla alındı, silme işlemini yapabiliriz
-                    using (_context)
+                    // Seçilen booking nesnesini al
+                    var booking = _bookingService.GetById(bookingId);
+                    if (booking != null)
                     {
-                        var bookingToDelete = _context.Bookings.Find(booking.ID);
-                        if (bookingToDelete != null)
-                        {
-                            booking.IsDeleted = true;
-                            booking.IsActive = false;
-                            _bookingService.Delete(bookingToDelete.ID);
-                            MessageBox.Show("Misafir başarıyla silindi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // Silme işlemini yap
+                        booking.IsDeleted = true;
+                        booking.IsActive = false;
+                        _bookingService.Delete(bookingId);
+                        MessageBox.Show("Rezervasyon başarıyla silindi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                            // DataGridView'i güncelleyebiliriz
-                            dgwRezervations.DataSource = _context.Bookings.ToList();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Seçili misafir bulunamadı.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        // DataGridView'i güncelle
+                        UpdateDataGridAndSearch();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Seçili rezervasyon bulunamadı.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Seçili satırda geçerli bir misafir bulunamadı.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Silme işlemi sırasında bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Lütfen önce bir misafir seçin.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lütfen silinecek bir rezervasyon seçin.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
+
     }
 
-}
+    }
+
