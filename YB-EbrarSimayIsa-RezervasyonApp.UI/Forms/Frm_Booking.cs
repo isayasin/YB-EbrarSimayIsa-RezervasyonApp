@@ -70,7 +70,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
 
         }
 
-        List<string> payments = new List<string>();
+        private List<string> payments = new List<string>();
         private List<Guest> guests = new List<Guest>();
         decimal totalPrice;
         int secilen;
@@ -78,6 +78,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
         private Booking _booking;
         private Room _room;
         private Hotel _hotel;
+        private Payment _payment;
         private void Frm_Booking_Load(object sender, EventArgs e)
         {
             DataGridListFill();
@@ -198,7 +199,6 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
 
         private void PaymentsComboFill()
         {
-
             payments.Add("Nakit");
             payments.Add("Kredi Karti");
             payments.Add("Banka Karti");
@@ -233,7 +233,6 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
 
         void RoomNumberFill()
         {
-
             if (cmbHotel.SelectedValue is Guid hotelId && cmbRoomType.SelectedValue is Guid roomTypeId)
             {
                 cmbRoomNumber.DataSource = null;
@@ -261,11 +260,37 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
                 RoomNumberFill();
                 TotalPriceCalculate();
             }
+            if (cmbRoomType.SelectedValue is Guid roomTypeId)
+            {
+                nmrGuest.Maximum = _roomTypeService.GetById(roomTypeId).Capacity;
+            }
+        }
+
+        private void cmbRoomNumber_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TotalPriceCalculate();
+        }
+
+        private void nmrGuest_ValueChanged(object sender, EventArgs e)
+        {
+            TotalPriceCalculate();
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            dateTimePicker1.MinDate = DateTime.Today;
+            dateTimePicker2.MinDate = dateTimePicker1.Value.AddDays(1);
+
         }
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
             TotalPriceCalculate();
+        }
+
+        private void cmbPaymentMethod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            secilen = cmbPaymentMethod.SelectedIndex;
         }
 
         private void TotalPriceCalculate()
@@ -283,30 +308,14 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
                 lblAmount.Text = $"{totalPrice.ToString()} TL";
             }
         }
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-            dateTimePicker1.MinDate = DateTime.Today;
-            dateTimePicker2.MinDate = dateTimePicker1.Value.AddDays(1);
-
-        }
-
-        private void cmbPaymentMethod_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            secilen = cmbPaymentMethod.SelectedIndex;
-            //MessageBox.Show($"Secilen odeme turu: { secilen.ToString()}");
-        }
 
         private void txtRezervationsSearch_TextChanged(object sender, EventArgs e)
-       {
-
+        {
             UpdateDataGridAndSearch();
-
         }
 
         private void UpdateDataGridAndSearch()
         {
-
-
             string searchText = txtRezervationsSearch.Text.ToLower();
 
             if (!string.IsNullOrEmpty(searchText) && searchText.Length >= 1)
@@ -341,57 +350,8 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
             {
                 dgwRezervations.DataSource = _bookingService.GetAll();
             }
-
-
-
-
         }
 
-        private void GetReservationsByTextSearch()
-        {
-
-            dgwRezervations.DataSource = _bookingService.GetAll();
-
-        }
-
-
-
-
-        /*private void UpdateCmbRoomNumberFill()
-        {
-            cmbRoomNumber.DataSource = null;
-            cmbRoomNumber.DataSource = _roomService.GetRoomsByHotelAndRoomType(_hotel.ID, _room.ID);
-            cmbRoomNumber.DisplayMember = "RoomNumber";
-            cmbRoomNumber.ValueMember = "ID";
-            cmbRoomNumber.SelectedValue = _booking.RoomID;
-            UpdateCmbRoomTypeFill();
-
-        }
-
-        private void UpdateCmbRoomTypeFill()
-        {
-
-            cmbRoomType.DataSource = null;
-            cmbRoomType.DataSource = _roomTypeService.GetRoomTypesByHotelId(_hotel.ID);
-            cmbRoomType.DisplayMember = "DisplayInfo";
-            cmbRoomType.ValueMember = "ID";
-            cmbRoomType.SelectedValue = _room.RoomTypeID;
-            UpdateCmbHotelFill();
-
-
-        }
-
-        private void UpdateCmbHotelFill()
-        {
-            cmbHotel.DataSource = null;
-            cmbHotel.DataSource = _hotelService.GetAll();
-            cmbHotel.DisplayMember = "Name";
-            cmbHotel.ValueMember = "ID";
-            cmbHotel.SelectedValue = _room.HotelID;
-
-        }*/
-
-        Payment _payment;
         private void dgwRezervations_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             isUpdating = true;
@@ -485,11 +445,6 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
             }
         }
 
-        private void nmrGuest_ValueChanged(object sender, EventArgs e)
-        {
-            TotalPriceCalculate();
-        }
-
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             using (var transaction = _context.Database.BeginTransaction())
@@ -560,21 +515,13 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
             }
         }
 
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
-
             if (dgwRezervations.SelectedRows.Count > 0)
             {
-
-                
-
                 // Seçili satırdan ID'yi al
                 var selectedRow = dgwRezervations.SelectedRows[0];
                 var bookingId = (Guid)selectedRow.Cells["ID"].Value;
-
-
                 try
                 {
                     // Seçilen booking nesnesini al
@@ -604,10 +551,12 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
             {
                 MessageBox.Show("Lütfen silinecek bir rezervasyon seçin.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
-    }
+        private void btnGuestDelete_Click(object sender, EventArgs e)
+        {
 
+        }
     }
+}
 

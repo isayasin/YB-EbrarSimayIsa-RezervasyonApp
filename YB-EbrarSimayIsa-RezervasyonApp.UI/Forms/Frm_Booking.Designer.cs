@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            btnGuestDelete = new Button();
             label9 = new Label();
             cmbPaymentMethod = new ComboBox();
             label8 = new Label();
@@ -54,7 +55,6 @@
             btnDelete = new Button();
             btnUpdate = new Button();
             txtRezervationsSearch = new TextBox();
-            btnGuestDelete = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nmrGuest).BeginInit();
             groupBox2.SuspendLayout();
@@ -91,6 +91,16 @@
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Rezervasyon işlemleri";
+            // 
+            // btnGuestDelete
+            // 
+            btnGuestDelete.Location = new Point(506, 279);
+            btnGuestDelete.Name = "btnGuestDelete";
+            btnGuestDelete.Size = new Size(75, 23);
+            btnGuestDelete.TabIndex = 18;
+            btnGuestDelete.Text = "Misafiri Sil";
+            btnGuestDelete.UseVisualStyleBackColor = true;
+            btnGuestDelete.Click += btnGuestDelete_Click;
             // 
             // label9
             // 
@@ -237,6 +247,7 @@
             cmbRoomNumber.Name = "cmbRoomNumber";
             cmbRoomNumber.Size = new Size(216, 23);
             cmbRoomNumber.TabIndex = 2;
+            cmbRoomNumber.SelectedIndexChanged += cmbRoomNumber_SelectedIndexChanged;
             // 
             // label2
             // 
@@ -322,15 +333,6 @@
             txtRezervationsSearch.Size = new Size(178, 23);
             txtRezervationsSearch.TabIndex = 4;
             txtRezervationsSearch.TextChanged += txtRezervationsSearch_TextChanged;
-            // 
-            // btnGuestDelete
-            // 
-            btnGuestDelete.Location = new Point(506, 279);
-            btnGuestDelete.Name = "btnGuestDelete";
-            btnGuestDelete.Size = new Size(75, 23);
-            btnGuestDelete.TabIndex = 18;
-            btnGuestDelete.Text = "Misafiri Sil";
-            btnGuestDelete.UseVisualStyleBackColor = true;
             // 
             // Frm_Booking
             // 
