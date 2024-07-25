@@ -64,16 +64,28 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
             _bookingGuestRepository = new BookingGuestRepository(_context);
             _bookingGuestService = new BookingGuestService(_bookingGuestRepository);
 
-
             _paymentRepository = new PaymentRepository(_context);
             _paymentService = new PaymentService(_paymentRepository);
 
         }
 
-        List<String> payments = new List<string>();
+        List<string> payments = new List<string>();
         private List<Guest> guests = new List<Guest>();
         decimal totalPrice;
         int secilen;
+        bool isUpdating = false;
+        private Booking _booking;
+        private Room _room;
+        private Hotel _hotel;
+        private void Frm_Booking_Load(object sender, EventArgs e)
+        {
+            DataGridListFill();
+            PaymentsComboFill();
+            HotelComboFill();
+            dateTimePicker1.MinDate = DateTime.Today;
+            dateTimePicker2.MinDate = dateTimePicker1.Value.AddDays(1);
+        }
+
         private void btnGuestInfo_Click(object sender, EventArgs e)
         {
             int guestCount = (int)nmrGuest.Value;
@@ -112,7 +124,6 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
                 {
                     Booking booking = new Booking()
                     {
-                        ID = Guid.NewGuid(),
                         CheckinDate = dateTimePicker1.Value,
                         CheckoutDate = dateTimePicker2.Value,
                         RoomID = Guid.Parse(cmbRoomNumber.SelectedValue.ToString()),
@@ -146,22 +157,10 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
                     }
                     _paymentService.Add(payment);
 
-
-                    //guests.ForEach(x => _guestService.Add(
-                    //    new Guest()
-                    //    {
-                    //        FirstName = x.FirstName,
-                    //        LastName = x.LastName,
-                    //        Email = x.Email,
-                    //        Phone = x.Phone,
-                    //        Address = x.Address,
-                    //        DateOfBirth = x.DateOfBirth,
-                    //    }
-                    //    ));
-
                     transaction.Commit();
                     DataGridListFill();
                     MessageBox.Show("Rezervasyon başarı ile kayıt edildi.");
+                    ClearFormInputs();
                 }
                 catch (Exception ex)
                 {
@@ -171,6 +170,24 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
             }
         }
 
+        private void ClearFormInputs()
+        {
+            // Temizleme işlemleri
+            dateTimePicker1.Value = DateTime.Now;
+            dateTimePicker2.Value = DateTime.Now.AddDays(1);
+            cmbHotel.SelectedIndex = -1;
+            cmbRoomType.DataSource = null;
+            cmbRoomType.SelectedIndex = -1;
+            cmbRoomNumber.DataSource = null;
+            cmbRoomNumber.SelectedIndex = -1;
+            cmbPaymentMethod.SelectedIndex = -1;
+            nmrGuest.Value = 0;
+            lstGuests.Items.Clear();
+            lblAmount.Text = "0 TL";
+            totalPrice = 0;
+            guests.Clear();
+        }
+
         private void DataGridListFill()
         {
             dgwRezervations.ClearSelection();
@@ -178,12 +195,6 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
             dgwRezervations.DataSource = _bookingService.GetAll();
         }
 
-        private void Frm_Booking_Load(object sender, EventArgs e)
-        {
-            DataGridListFill();
-            PaymentsComboFill();
-            HotelComboFill();
-        }
         private void PaymentsComboFill()
         {
 
@@ -235,12 +246,20 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
 
         private void cmbHotel_SelectedIndexChanged(object sender, EventArgs e)
         {
-            RoomTypeComboFill();
+            if (!isUpdating)
+            {
+                RoomTypeComboFill();
+                TotalPriceCalculate();
+            }
         }
 
         private void cmbRoomType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            RoomNumberFill();
+            if (!isUpdating)
+            {
+                RoomNumberFill();
+                TotalPriceCalculate();
+            }
         }
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
@@ -256,7 +275,8 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
                 decimal pricePerNight = roomType.PricePerNight;
 
                 int daysOfReservation;
-                daysOfReservation = dateTimePicker2.Value.Day - dateTimePicker1.Value.Day;
+                TimeSpan ReservationDays = dateTimePicker2.Value.Date - dateTimePicker1.Value.Date;
+                daysOfReservation = ReservationDays.Days;
                 totalPrice = pricePerNight * nmrGuest.Value * daysOfReservation;
 
                 lblAmount.Text = $"{totalPrice.ToString()} TL";
@@ -295,7 +315,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
                                CheckInDate = booking.CheckinDate,
                                CheckOutDate = booking.CheckoutDate,
                                Total_Price = booking.TotalPrice,
-                               
+
 
                                GuestFirstName = guest.FirstName,
                                GuestLastName = guest.LastName,
@@ -303,12 +323,12 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
                                GuestPhone = guest.Phone,
                                GuestEmail = guest.Email,
                                GuestCreateDate = guest.CreateAtDate,
-                               
+
                                RooomTypeName = roomType.Name,
                                RoomTypeDescription = roomType.Description,
                                RoomTypePricePerNight = roomType.PricePerNight,
                                RoomTypeCapacity = roomType.Capacity
-                            
+
 
                                //BookingDetails = booking.Details
                            };
@@ -329,38 +349,210 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
 
         }
 
-        private Booking _bookings;
 
-        private void UpdateCmbRoomNumberFill()
+
+
+        /*private void UpdateCmbRoomNumberFill()
         {
-
-            //cmbRoomNumber.DataSource = null;
-            //var rooms = _roomService.GetRoomsByHotelAndRoomType(hotelId, roomTypeId);
-            //cmbRoomNumber.DataSource = rooms.ToList();
-            //cmbRoomNumber.DisplayMember = "RoomNumber";
-            //cmbRoomNumber.ValueMember = "ID";
-            //cmbRoomNumber.SelectedIndex = -1;
-
             cmbRoomNumber.DataSource = null;
-            cmbRoomNumber.DataSource = _roomService.GetAll();
+            cmbRoomNumber.DataSource = _roomService.GetRoomsByHotelAndRoomType(_hotel.ID, _room.ID);
             cmbRoomNumber.DisplayMember = "RoomNumber";
             cmbRoomNumber.ValueMember = "ID";
-            cmbRoomNumber.SelectedValue = _roomService.GetById(_bookings.RoomID);
-            //cmbRoomNumber.SelectedIndex = -1;
+            cmbRoomNumber.SelectedValue = _booking.RoomID;
+            UpdateCmbRoomTypeFill();
+
         }
 
+        private void UpdateCmbRoomTypeFill()
+        {
+
+            cmbRoomType.DataSource = null;
+            cmbRoomType.DataSource = _roomTypeService.GetRoomTypesByHotelId(_hotel.ID);
+            cmbRoomType.DisplayMember = "DisplayInfo";
+            cmbRoomType.ValueMember = "ID";
+            cmbRoomType.SelectedValue = _room.RoomTypeID;
+            UpdateCmbHotelFill();
+
+
+        }
+
+        private void UpdateCmbHotelFill()
+        {
+            cmbHotel.DataSource = null;
+            cmbHotel.DataSource = _hotelService.GetAll();
+            cmbHotel.DisplayMember = "Name";
+            cmbHotel.ValueMember = "ID";
+            cmbHotel.SelectedValue = _room.HotelID;
+
+        }*/
+
+        Payment _payment;
         private void dgwRezervations_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            _bookings = _bookingService.GetById((Guid)dgwRezervations.CurrentRow.Cells["Id"].Value);
-            UpdateCmbRoomNumberFill();
-            //txtUpdateDistrict.Text = _bookings.District.ToString();
-            //txtUpdateStreet.Text = _bookings.Street.ToString();
-            //txtUpdateBuildNumber.Text = _bookings.BuildNumber.ToString();
-            //txtUpdateFloor.Text = _bookings.FloorNumber.ToString();
-            //txtUpdateApartmentNumber.Text = _bookings.ApartmentNumber.ToString();
-            //txtUpdatePostalCode.Text = _bookings.PostalCode.ToString();
-            //cbxIsActive.Checked = _bookings.IsActive;
-            //cbxIsDeleted.Checked = _bookings.IsDeleted;
+            isUpdating = true;
+            try
+            {
+                _booking = _bookingService.GetById((Guid)dgwRezervations.CurrentRow.Cells["Id"].Value);
+                _room = _roomService.GetById(_booking.RoomID);
+                _hotel = _hotelService.GetById(_room.HotelID);
+                _payment = _paymentService.GetAll().FirstOrDefault(p => p.BookingID == _booking.ID);
+
+                // Oteli doldur ve seçili değeri ayarla
+                cmbHotel.DataSource = null;
+                cmbHotel.DataSource = _hotelService.GetAll();
+                cmbHotel.DisplayMember = "Name";
+                cmbHotel.ValueMember = "ID";
+                cmbHotel.SelectedValue = _room.HotelID;
+
+                // Oda tipini doldur ve seçili değeri ayarla
+                RoomTypeComboFill();  // Bu metod cmbHotel_SelectedIndexChanged olayını tetikler
+                cmbRoomType.SelectedValue = _room.RoomTypeID;
+
+                // Oda numarasını doldur ve seçili değeri ayarla
+                RoomNumberFill();  // Bu metod cmbRoomType_SelectedIndexChanged olayını tetikler
+                cmbRoomNumber.SelectedValue = _booking.RoomID;
+
+                // Diğer alanları doldur
+                dateTimePicker1.Value = _booking.CheckinDate;
+                dateTimePicker2.Value = _booking.CheckoutDate;
+
+                var bookingGuests = _context.BookingGuests.Where(bg => bg.BookingID == _booking.ID).ToList();
+                nmrGuest.Value = bookingGuests.Count;
+
+                // Misafir bilgilerini ListBox'a ekle
+                lstGuests.Items.Clear();
+                guests.Clear();
+                foreach (var bookingGuest in bookingGuests)
+                {
+                    var guest = _guestService.GetById(bookingGuest.GuestID);
+                    guests.Add(guest);
+                    lstGuests.Items.Add($"{guest.FirstName} - {guest.LastName} - {guest.Email}");
+                }
+
+                totalPrice = _booking.TotalPrice;
+                lblAmount.Text = $"{totalPrice.ToString()} TL";
+
+                var payment = _context.Payments.FirstOrDefault(p => p.BookingID == _booking.ID);
+                if (payment != null)
+                {
+                    cmbPaymentMethod.SelectedItem = payment.PaymentMethod;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Güncelleme sırasında bir hata oluştu: " + ex.Message);
+            }
+            finally
+            {
+                isUpdating = false;
+            }
+        }
+
+        private void lstGuests_DoubleClick(object sender, EventArgs e)
+        {
+            if (lstGuests.SelectedIndex != -1)
+            {
+                var selectedGuest = guests[lstGuests.SelectedIndex];
+                using (Frm_GuestDetails guestForm = new Frm_GuestDetails())
+                {
+                    // Misafir bilgilerini formda doldur
+                    guestForm.GuestName = selectedGuest.FirstName;
+                    guestForm.GuestSurname = selectedGuest.LastName;
+                    guestForm.GuestEmail = selectedGuest.Email;
+                    guestForm.GuestPhone = selectedGuest.Phone;
+                    guestForm.GuestAddress = selectedGuest.Address;
+                    guestForm.GuestBirthDate = selectedGuest.DateOfBirth;
+
+                    if (guestForm.ShowDialog() == DialogResult.OK)
+                    {
+                        // Güncellenmiş bilgileri misafir nesnesine aktar
+                        selectedGuest.FirstName = guestForm.GuestName;
+                        selectedGuest.LastName = guestForm.GuestSurname;
+                        selectedGuest.Email = guestForm.GuestEmail;
+                        selectedGuest.Phone = guestForm.GuestPhone;
+                        selectedGuest.Address = guestForm.GuestAddress;
+                        selectedGuest.DateOfBirth = guestForm.GuestBirthDate;
+
+                        // ListBox'ı güncelle
+                        lstGuests.Items[lstGuests.SelectedIndex] = $"{selectedGuest.FirstName} {selectedGuest.LastName} - {selectedGuest.Email}";
+                    }
+                }
+            }
+        }
+
+        private void nmrGuest_ValueChanged(object sender, EventArgs e)
+        {
+            TotalPriceCalculate();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    _booking.CheckinDate = dateTimePicker1.Value;
+                    _booking.CheckoutDate = dateTimePicker2.Value;
+                    _booking.RoomID = (Guid)cmbRoomNumber.SelectedValue;
+                    _booking.TotalPrice = totalPrice;
+
+                    _payment.Amount = _booking.TotalPrice;
+                    _payment.PaymentMethod = payments[secilen];
+
+                    _bookingService.Update(_booking);
+                    _paymentService.Update(_payment);
+
+                    // Mevcut misafirleri güncelle
+                    var existingBookingGuests = _bookingGuestService.GetByBookingId(_booking.ID).ToList();
+                    var newGuestIds = guests.Select(g => g.ID).ToList();
+
+                    // Var olan misafirleri kontrol et ve güncelle
+                    foreach (var bookingGuest in existingBookingGuests)
+                    {
+                        if (!newGuestIds.Contains(bookingGuest.GuestID))
+                        {
+                            _bookingGuestService.Delete(bookingGuest.ID);  // Misafiri rezervasyondan çıkar
+                        }
+                    }
+
+                    // Yeni misafirleri ekle veya güncelle
+                    foreach (var guest in guests)
+                    {
+                        if (_guestService.Exists(guest.ID))
+                        {
+                            _guestService.Update(guest);  // Misafir bilgilerini güncelle
+                        }
+                        else
+                        {
+                            _guestService.Add(guest);  // Yeni misafiri ekle
+                        }
+
+                        var bookingGuest = new BookingGuest
+                        {
+                            BookingID = _booking.ID,
+                            GuestID = guest.ID
+                        };
+
+                        if (!_bookingGuestService.GetByBookingId(_booking.ID).Any(bg => bg.GuestID == guest.ID))
+                        {
+                            _bookingGuestService.Add(bookingGuest);  // Misafiri rezervasyona ekle
+                        }
+                    }
+
+                    // Rezervasyonu güncelle
+                    _bookingService.Update(_booking);
+
+                    transaction.Commit();
+                    DataGridListFill();
+                    MessageBox.Show("Rezervasyon başarı ile güncellendi.");
+                    ClearFormInputs();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    MessageBox.Show("Güncelleme sırasında bir hata oluştu: " + ex.Message);
+                }
+            }
         }
     }
 

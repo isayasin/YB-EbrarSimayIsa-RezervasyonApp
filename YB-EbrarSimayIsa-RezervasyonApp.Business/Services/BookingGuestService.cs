@@ -20,6 +20,11 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.Business.Services
             _bookingGuestRepository = bRepo;
         }
 
+        public IEnumerable<BookingGuest> GetByBookingId(Guid bookingId)
+        {
+            return _bookingGuestRepository.GetByBookingId(bookingId);
+        }
+
         public void Add(BookingGuest entity)
         {
             //BookingValidator bVal = new();

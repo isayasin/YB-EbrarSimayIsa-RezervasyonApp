@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,14 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Repositories
 {
     public class GuestRepository : GenericRepository<Guest>
     {
+        ApplicationDbContext _context;
         public GuestRepository(ApplicationDbContext context) : base(context)
         {
+             _context = context;
+        }
+        public bool Exists(Guid id)
+        {
+            return _context.Guests.Any(g => g.ID == id);
         }
     }
 }

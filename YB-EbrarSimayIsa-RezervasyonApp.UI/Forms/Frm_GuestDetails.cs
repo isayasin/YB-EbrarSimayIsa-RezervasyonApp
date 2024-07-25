@@ -13,12 +13,41 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
 {
     public partial class Frm_GuestDetails : Form
     {
-        public string GuestName { get; set; }
-        public string GuestSurname { get; set; }
-        public string GuestEmail { get; set; }
-        public string GuestPhone { get; set; }
-        public string GuestAddress { get; set; }
-        public DateTime GuestBirthDate { get; set; }
+        public string GuestName
+        {
+            get { return txtFirstName.Text; }
+            set { txtFirstName.Text = value; }
+        }
+
+        public string GuestSurname
+        {
+            get { return txtLastName.Text; }
+            set { txtLastName.Text = value; }
+        }
+
+        public string GuestEmail
+        {
+            get { return txtEmail.Text; }
+            set { txtEmail.Text = value; }
+        }
+
+        public string GuestPhone
+        {
+            get { return txtPhone.Text; }
+            set { txtPhone.Text = value; }
+        }
+
+        public string GuestAddress
+        {
+            get { return txtAddress.Text; }
+            set { txtAddress.Text = value; }
+        }
+
+        public DateTime GuestBirthDate
+        {
+            get { return dtpBirthdate.Value; }
+            set { dtpBirthdate.Value = value; }
+        }
 
 
 

@@ -21,6 +21,11 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.Business.Services
             _guestRepository = gRepo;
         }
 
+        public bool Exists(Guid id)
+        {
+            return _guestRepository.Exists(id);
+        }
+
         public void Add(Guest entity)
         {
             GuestValidator gVal = new();
