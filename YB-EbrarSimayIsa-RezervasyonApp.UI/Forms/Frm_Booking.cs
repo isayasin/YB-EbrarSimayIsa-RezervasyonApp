@@ -120,6 +120,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
 
         private void btnKaydet_Click(object sender, EventArgs e)
         {
+            
             using (var transaction = _context.Database.BeginTransaction())
             {
                 try
@@ -162,6 +163,40 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
                     transaction.Commit();
                     DataGridListFill();
                     MessageBox.Show("Rezervasyon başarı ile kayıt edildi.");
+
+
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine($"Rezervasyon ID: {booking.ID}");
+                    sb.AppendLine(new string('-', 20));
+                    sb.AppendLine($"Otel Adı: {(_hotelService.GetById(_roomService.GetById(booking.RoomID).HotelID)).Name}");
+                    sb.AppendLine($"Oda Numarası: {_roomService.GetById(booking.RoomID).RoomNumber}");
+                    sb.AppendLine($"Oda Tipi: {(_roomTypeService.GetById(_roomService.GetById(booking.RoomID).RoomTypeID)).Name}");
+                    sb.AppendLine($"Oda'nın Gecelik Ücreti: {(_roomTypeService.GetById(_roomService.GetById(booking.RoomID).RoomTypeID)).PricePerNight}");
+
+
+                    sb.AppendLine($"CheckIn Tarihi: {booking.CheckinDate.ToShortDateString()}");
+                    sb.AppendLine($"CheckOut Tarihi: {booking.CheckoutDate.ToShortDateString()}");
+                    sb.AppendLine($"Rezervasyonun Total Ücreti: {payment.Amount}");
+
+
+                    sb.AppendLine(new string('-', 20));
+                    sb.AppendLine($"Toplam Misafir Sayısı: {guests.Count}");
+                    sb.AppendLine(new string('-', 20));
+                    foreach (Guest guest in guests)
+                    {
+                        sb.AppendLine($"Ad: {guest.FirstName}");
+                        sb.AppendLine($"Soyad: {guest.LastName}");
+                        sb.AppendLine($"Email: {guest.Email}");
+                        sb.AppendLine($"Telefon: {guest.Phone}");
+                        sb.AppendLine($"Adres: {guest.Address}");
+                        sb.AppendLine($"Doğum Tarihi: {guest.DateOfBirth.ToShortDateString()}");
+                        sb.AppendLine(new string('-', 20));
+                    }
+                    
+
+                    MessageBox.Show(sb.ToString(), "Rezervasyon Bilgisi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
                     ClearFormInputs();
                 }
                 catch (Exception ex)
@@ -171,7 +206,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
                 }
             }
         }
-
+        
         private void ClearFormInputs()
         {
             // Temizleme işlemleri
