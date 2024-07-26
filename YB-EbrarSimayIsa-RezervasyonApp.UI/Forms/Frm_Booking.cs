@@ -340,8 +340,10 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
                 daysOfReservation = ReservationDays.Days;
                 totalPrice = pricePerNight * nmrGuest.Value * daysOfReservation;
 
-                lblAmount.Text = $"{totalPrice.ToString()} TL";
+                lblAmount.Text = $"{totalPrice.ToString()} TL";    
             }
+
+
         }
 
         private void txtRezervationsSearch_TextChanged(object sender, EventArgs e)
@@ -506,6 +508,8 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
                     {
                         if (!newGuestIds.Contains(bookingGuest.GuestID))
                         {
+                            _bookingGuestService.GetById(bookingGuest.ID).IsActive = false;
+                            _bookingGuestService.GetById(bookingGuest.ID).IsDeleted = true;
                             _bookingGuestService.Delete(bookingGuest.ID);  // Misafiri rezervasyondan çıkar
                         }
                     }
@@ -590,6 +594,29 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
 
         private void btnGuestDelete_Click(object sender, EventArgs e)
         {
+            if (lstGuests.SelectedIndex != -1)
+            {
+                // Seçili misafiri al
+                var selectedGuest = guests[lstGuests.SelectedIndex];
+
+                selectedGuest.IsDeleted = true;
+                selectedGuest.IsActive = false;
+
+                // Misafiri listeden kaldır
+                guests.Remove(selectedGuest);
+                lstGuests.Items.RemoveAt(lstGuests.SelectedIndex);
+
+                // Misafir sayısını güncelle
+                nmrGuest.Value = guests.Count;
+
+                // Toplam tutarı yeniden hesapla
+                TotalPriceCalculate();
+            }
+            else
+            {
+                MessageBox.Show("Lütfen silmek için bir misafir seçin.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
 
         }
     }
