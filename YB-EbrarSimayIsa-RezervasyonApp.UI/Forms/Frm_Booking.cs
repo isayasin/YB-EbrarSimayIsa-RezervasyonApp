@@ -90,32 +90,68 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
 
         private void btnGuestInfo_Click(object sender, EventArgs e)
         {
-            int guestCount = (int)nmrGuest.Value;
-
-            for (int i = 0; i < guestCount; i++)
+            try
             {
-                using (Frm_GuestDetails guestForm = new Frm_GuestDetails())
+                int guestCount = (int)nmrGuest.Value;
+
+                /*int newGuestCount = (int)nmrGuest.Value;
+                if (!isUpdating)
                 {
-                    if (guestForm.ShowDialog() == DialogResult.OK)
+                    //Math.Abs(guestCount);
+                    newGuestCount = (int)nmrGuest.Value;
+                    
+                } else if (isUpdating)
+                {
+                    var bookingGuests = _context.BookingGuests.Where(bg => bg.BookingID == _booking.ID).ToList();
+
+                    newGuestCount = Math.Abs(bookingGuests.Count - (int)nmrGuest.Value);
+                }*/
+
+                for (int i = 0; i < guestCount; i++)
+                {
+                    using (Frm_GuestDetails guestForm = new Frm_GuestDetails())
                     {
-                        Guest guest = new Guest
+                        if (guestForm.ShowDialog() == DialogResult.OK)
                         {
-                            //ID = new Guid(),
-                            FirstName = guestForm.GuestName,
-                            LastName = guestForm.GuestSurname,
-                            Email = guestForm.GuestEmail,
-                            Phone = guestForm.GuestPhone,
-                            Address = guestForm.GuestAddress,
-                            DateOfBirth = guestForm.GuestBirthDate
-                        };
+                            foreach (var control in guestForm.Controls)
+                            {
+                                if (control is TextBox textBox && string.IsNullOrWhiteSpace(textBox.Text))
+                                {
+                                    throw new Exception("Misafir bilgileri boş geçilemez.");
+                                }
+                                else if (control is ComboBox comboBox && comboBox.SelectedIndex == -1)
+                                {
+                                    throw new Exception("Misafir bilgileri boş geçilemez.");
+                                }
+                                else if (control is DateTimePicker dateTimePicker && dateTimePicker.Value == default(DateTime))
+                                {
+                                    throw new Exception("Misafir bilgileri boş geçilemez.");
+                                }
+                            }
+                            Guest guest = new Guest
+                            {
+                                //ID = new Guid(),
+                                FirstName = guestForm.GuestName,
+                                LastName = guestForm.GuestSurname,
+                                Email = guestForm.GuestEmail,
+                                Phone = guestForm.GuestPhone,
+                                Address = guestForm.GuestAddress,
+                                DateOfBirth = guestForm.GuestBirthDate
+                            };
 
-                        guests.Add(guest);
+                            guests.Add(guest);
 
-                        // Liste kutusuna ekle
-                        lstGuests.Items.Add($"{guest.FirstName} {guest.LastName} - {guest.Email}");
+                            // Liste kutusuna ekle
+                            lstGuests.Items.Add($"{guest.FirstName} {guest.LastName} - {guest.Email}");
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         private void btnKaydet_Click(object sender, EventArgs e)
@@ -315,7 +351,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
         {
             dateTimePicker1.MinDate = DateTime.Today;
             dateTimePicker2.MinDate = dateTimePicker1.Value.AddDays(1);
-
+            TotalPriceCalculate();
         }
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)

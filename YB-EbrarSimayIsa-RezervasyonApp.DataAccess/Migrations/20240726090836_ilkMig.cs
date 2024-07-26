@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class FirstApp : Migration
+    public partial class ilkMig : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -220,8 +220,8 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                 columns: new[] { "ID", "Address", "CheckinTime", "CheckoutTime", "CreateAtDate", "Email", "IsActive", "IsDeleted", "Name", "Phone", "Stars", "UpdateAtDate" },
                 values: new object[,]
                 {
-                    { new Guid("732160cd-b0ba-425d-8819-4d9166046d3e"), "İstanbul-Basaksehir", new TimeOnly(14, 0, 0), new TimeOnly(11, 0, 0), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "email@gmail.com", true, false, "Hilton", "555 555 55 55", 4, new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("bdad296a-14d4-4a60-97c7-65ca0b72ad1a"), "İstanbul-Kadıköy", new TimeOnly(13, 0, 0), new TimeOnly(10, 0, 0), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "email@gmail.com", true, false, "Movenpick", "555 555 55 55", 5, new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { new Guid("36c7f983-e2f5-4f91-b547-6e5e457030e2"), "İstanbul-Basaksehir", new TimeOnly(14, 0, 0), new TimeOnly(11, 0, 0), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "email@gmail.com", true, false, "Hilton", "555 555 55 55", 4, new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("69c53675-5c80-427a-8007-312b464f7621"), "İstanbul-Kadıköy", new TimeOnly(13, 0, 0), new TimeOnly(10, 0, 0), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "email@gmail.com", true, false, "Movenpick", "555 555 55 55", 5, new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
@@ -229,9 +229,9 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                 columns: new[] { "ID", "Capacity", "CreateAtDate", "Description", "IsActive", "IsDeleted", "Name", "PricePerNight", "UpdateAtDate" },
                 values: new object[,]
                 {
-                    { new Guid("d5690368-1ec2-400b-871f-0a7aed55a2bf"), 1, new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "Sokak Manzaralı", true, false, "Single", 1000.0m, new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("f01b552a-0ff4-423a-855f-866a1b3dd228"), 4, new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "Deniz Manzaralı", true, false, "Suit", 5000.0m, new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("fa2c2923-33a3-4f1e-bc00-341cfb1a38ef"), 2, new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "Orman Manzaralı", true, false, "Double", 2500.0m, new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { new Guid("09146cce-c6d7-4ea1-ba5e-8d72d68d36a3"), 2, new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "Orman Manzaralı", true, false, "Double", 2500.0m, new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("211418e9-cb72-406c-b10c-f2f0c470e870"), 4, new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "Deniz Manzaralı", true, false, "Suit", 5000.0m, new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("88760a1e-6dc1-4a8c-b09e-a346665241ad"), 1, new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "Sokak Manzaralı", true, false, "Single", 1000.0m, new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
@@ -239,16 +239,16 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.DataAccess.Migrations
                 columns: new[] { "ID", "CreateAtDate", "HotelID", "IsActive", "IsDeleted", "RoomNumber", "RoomTypeID", "Status", "UpdateAtDate" },
                 values: new object[,]
                 {
-                    { new Guid("19cef405-471b-40aa-9139-baaae394f676"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("732160cd-b0ba-425d-8819-4d9166046d3e"), true, false, 201, new Guid("fa2c2923-33a3-4f1e-bc00-341cfb1a38ef"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("28983a88-15ba-46af-97cc-ffdddac60d08"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("732160cd-b0ba-425d-8819-4d9166046d3e"), true, false, 301, new Guid("f01b552a-0ff4-423a-855f-866a1b3dd228"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("30e751fd-0b92-4347-8058-942aa75f4beb"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("732160cd-b0ba-425d-8819-4d9166046d3e"), true, false, 102, new Guid("d5690368-1ec2-400b-871f-0a7aed55a2bf"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("4c900308-2728-4aaa-ba64-1d2c27e9c9d1"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("bdad296a-14d4-4a60-97c7-65ca0b72ad1a"), true, false, 201, new Guid("fa2c2923-33a3-4f1e-bc00-341cfb1a38ef"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("4f6c5ef4-4ccd-44ad-ba26-9e19a00c5656"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("bdad296a-14d4-4a60-97c7-65ca0b72ad1a"), true, false, 202, new Guid("fa2c2923-33a3-4f1e-bc00-341cfb1a38ef"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("531604f3-9a7e-4c88-aa16-0508d2752451"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("732160cd-b0ba-425d-8819-4d9166046d3e"), true, false, 302, new Guid("f01b552a-0ff4-423a-855f-866a1b3dd228"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("b55c0584-8918-410d-91e2-1785771941e9"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("732160cd-b0ba-425d-8819-4d9166046d3e"), true, false, 103, new Guid("d5690368-1ec2-400b-871f-0a7aed55a2bf"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("bf7b6772-6e3d-40b6-a25f-a22fe4cd5fe5"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("732160cd-b0ba-425d-8819-4d9166046d3e"), true, false, 101, new Guid("d5690368-1ec2-400b-871f-0a7aed55a2bf"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("eafb0320-d1f9-43df-b3b2-e1d6682b2c43"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("bdad296a-14d4-4a60-97c7-65ca0b72ad1a"), true, false, 203, new Guid("fa2c2923-33a3-4f1e-bc00-341cfb1a38ef"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("ff2b167a-c165-4f55-8171-a9a8828ff7df"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("bdad296a-14d4-4a60-97c7-65ca0b72ad1a"), true, false, 101, new Guid("d5690368-1ec2-400b-871f-0a7aed55a2bf"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { new Guid("3a54e44d-7dc4-44d2-ac83-313814f35a5a"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("36c7f983-e2f5-4f91-b547-6e5e457030e2"), true, false, 301, new Guid("211418e9-cb72-406c-b10c-f2f0c470e870"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("3f51a3c9-73ee-4752-9590-53a44de9964b"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("36c7f983-e2f5-4f91-b547-6e5e457030e2"), true, false, 103, new Guid("88760a1e-6dc1-4a8c-b09e-a346665241ad"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("50faf681-6ab0-4340-8e38-78e641c2e4c5"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("36c7f983-e2f5-4f91-b547-6e5e457030e2"), true, false, 302, new Guid("211418e9-cb72-406c-b10c-f2f0c470e870"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("5cadaaf8-1f64-4d95-bd2e-f6f79ed44dd2"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("69c53675-5c80-427a-8007-312b464f7621"), true, false, 203, new Guid("09146cce-c6d7-4ea1-ba5e-8d72d68d36a3"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("60157f32-e7a5-48a8-ac39-c8902f713dae"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("69c53675-5c80-427a-8007-312b464f7621"), true, false, 201, new Guid("09146cce-c6d7-4ea1-ba5e-8d72d68d36a3"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("6419547c-1df0-43fd-bafb-59e4775d5ad0"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("36c7f983-e2f5-4f91-b547-6e5e457030e2"), true, false, 102, new Guid("88760a1e-6dc1-4a8c-b09e-a346665241ad"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("66d42199-dcb7-42ba-a485-c9d640f454e6"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("69c53675-5c80-427a-8007-312b464f7621"), true, false, 101, new Guid("88760a1e-6dc1-4a8c-b09e-a346665241ad"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("9b7a6a55-ce71-4bb5-8993-4a7dbfb9ce5f"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("36c7f983-e2f5-4f91-b547-6e5e457030e2"), true, false, 101, new Guid("88760a1e-6dc1-4a8c-b09e-a346665241ad"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("d0b5548c-1b1d-46cf-8f76-41ce3e998871"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("36c7f983-e2f5-4f91-b547-6e5e457030e2"), true, false, 201, new Guid("09146cce-c6d7-4ea1-ba5e-8d72d68d36a3"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("db2e5de9-c61d-4cda-b46a-6358107e6be3"), new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("69c53675-5c80-427a-8007-312b464f7621"), true, false, 202, new Guid("09146cce-c6d7-4ea1-ba5e-8d72d68d36a3"), "Müsait", new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.CreateIndex(
