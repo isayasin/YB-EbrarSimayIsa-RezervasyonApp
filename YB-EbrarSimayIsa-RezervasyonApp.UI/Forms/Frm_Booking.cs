@@ -151,12 +151,12 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
 
         private void btnKaydet_Click(object sender, EventArgs e)
         {
-            
+
             using (var transaction = _context.Database.BeginTransaction())
             {
                 try
@@ -228,7 +228,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
                         sb.AppendLine($"Doğum Tarihi: {guest.DateOfBirth.ToShortDateString()}");
                         sb.AppendLine(new string('-', 20));
                     }
-                    
+
 
                     MessageBox.Show(sb.ToString(), "Rezervasyon Bilgisi", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -242,12 +242,13 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
                 }
             }
         }
-        
+
         private void ClearFormInputs()
         {
             // Temizleme işlemleri
             dateTimePicker1.Value = DateTime.Now;
             dateTimePicker2.Value = DateTime.Now.AddDays(1);
+            dateTimePicker3.Value = DateTime.Now.AddDays(-1);
             cmbHotel.SelectedIndex = -1;
             cmbRoomType.DataSource = null;
             cmbRoomType.SelectedIndex = -1;
@@ -258,6 +259,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
             lstGuests.Items.Clear();
             lblAmount.Text = "0 TL";
             totalPrice = 0;
+            txtRezervationsSearch.Clear();
             guests.Clear();
         }
 
@@ -359,6 +361,48 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
             TotalPriceCalculate();
         }
 
+        private void dateTimePicker3_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime searchDate = dateTimePicker3.Value.Date;
+
+            if (searchDate >= DateTime.Now.Date)
+            {
+                var data = from bookingGuest in _context.BookingGuests
+                           join booking in _context.Bookings on bookingGuest.BookingID equals booking.ID
+                           join guest in _context.Guests on bookingGuest.GuestID equals guest.ID
+                           join roomType in _context.RoomTypes on booking.Room.RoomType.ID equals roomType.ID
+                           where booking.CheckinDate.Date <= searchDate && booking.CheckoutDate >= searchDate
+                           select new
+                           {
+                               ID = booking.ID,
+                               GuestID = guest.ID,
+                               CheckInDate = booking.CheckinDate,
+                               CheckOutDate = booking.CheckoutDate,
+                               Total_Price = booking.TotalPrice,
+                               GuestFirstName = guest.FirstName,
+                               GuestLastName = guest.LastName,
+                               GuestAddress = guest.Address,
+                               GuestPhone = guest.Phone,
+                               GuestEmail = guest.Email,
+                               GuestCreateDate = guest.CreateAtDate,
+                               RooomTypeName = roomType.Name,
+                               RoomTypeDescription = roomType.Description,
+                               RoomTypePricePerNight = roomType.PricePerNight,
+                               RoomTypeCapacity = roomType.Capacity
+                           };
+
+                dgwRezervations.DataSource = data.ToList();
+                if (data == null)
+                {
+                    dgwRezervations.DataSource = _bookingService.GetAll();
+                }
+            }
+            else
+            {
+                dgwRezervations.DataSource = _bookingService.GetAll();
+            }
+        }
+
         private void cmbPaymentMethod_SelectedIndexChanged(object sender, EventArgs e)
         {
             secilen = cmbPaymentMethod.SelectedIndex;
@@ -376,7 +420,7 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
                 daysOfReservation = ReservationDays.Days;
                 totalPrice = pricePerNight * nmrGuest.Value * daysOfReservation;
 
-                lblAmount.Text = $"{totalPrice.ToString()} TL";    
+                lblAmount.Text = $"{totalPrice.ToString()} TL";
             }
 
 
@@ -654,6 +698,16 @@ namespace YB_EbrarSimayIsa_RezervasyonApp.UI.Forms
             }
 
 
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnClearForm_Click(object sender, EventArgs e)
+        {
+            ClearFormInputs();
         }
     }
 }

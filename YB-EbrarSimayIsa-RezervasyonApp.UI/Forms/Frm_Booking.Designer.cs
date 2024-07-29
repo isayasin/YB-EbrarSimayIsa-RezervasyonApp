@@ -55,6 +55,8 @@
             btnDelete = new Button();
             btnUpdate = new Button();
             txtRezervationsSearch = new TextBox();
+            dateTimePicker3 = new DateTimePicker();
+            btnClearForm = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nmrGuest).BeginInit();
             groupBox2.SuspendLayout();
@@ -91,6 +93,7 @@
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Rezervasyon işlemleri";
+            groupBox1.Enter += groupBox1_Enter;
             // 
             // btnGuestDelete
             // 
@@ -328,11 +331,30 @@
             // 
             // txtRezervationsSearch
             // 
-            txtRezervationsSearch.Location = new Point(368, 382);
+            txtRezervationsSearch.Location = new Point(414, 384);
             txtRezervationsSearch.Name = "txtRezervationsSearch";
-            txtRezervationsSearch.Size = new Size(178, 23);
+            txtRezervationsSearch.Size = new Size(102, 23);
             txtRezervationsSearch.TabIndex = 4;
             txtRezervationsSearch.TextChanged += txtRezervationsSearch_TextChanged;
+            // 
+            // dateTimePicker3
+            // 
+            dateTimePicker3.Format = DateTimePickerFormat.Short;
+            dateTimePicker3.Location = new Point(550, 384);
+            dateTimePicker3.Name = "dateTimePicker3";
+            dateTimePicker3.Size = new Size(121, 23);
+            dateTimePicker3.TabIndex = 7;
+            dateTimePicker3.ValueChanged += dateTimePicker3_ValueChanged;
+            // 
+            // btnClearForm
+            // 
+            btnClearForm.Location = new Point(713, 384);
+            btnClearForm.Name = "btnClearForm";
+            btnClearForm.Size = new Size(104, 23);
+            btnClearForm.TabIndex = 8;
+            btnClearForm.Text = "Formu Temizle";
+            btnClearForm.UseVisualStyleBackColor = true;
+            btnClearForm.Click += btnClearForm_Click;
             // 
             // Frm_Booking
             // 
@@ -340,11 +362,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(854, 616);
+            Controls.Add(btnClearForm);
             Controls.Add(txtRezervationsSearch);
             Controls.Add(btnUpdate);
             Controls.Add(btnDelete);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
+            Controls.Add(dateTimePicker3);
             Name = "Frm_Booking";
             Text = "Form2";
             Load += Frm_Booking_Load;
@@ -386,5 +410,7 @@
         private Label label9;
         private ComboBox cmbPaymentMethod;
         private Button btnGuestDelete;
+        private DateTimePicker dateTimePicker3;
+        private Button btnClearForm;
     }
 }
